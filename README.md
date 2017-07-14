@@ -1,1 +1,2 @@
-# alexys
+# Alexys
+WordPress + WooCommerce.
