@@ -1,0 +1,31 @@
+# docker exec $(docker ps -lq) /bin/bash -c "wp db import /data/database.sql --allow-root"
+
+version: '2'
+services:
+    database:
+        container_name: alexys-mysql
+        image: mysql:5.7
+        env_file:
+            - .env
+        ports:
+            - "3306:3306"
+    webserver:
+        container_name: alexys-webserver
+        build:
+            context: .
+            dockerfile: .docker/webserver/Dockerfile
+        volumes:
+            - ${PWD}:/var/www/alexys
+            # Ignore NPM and Bower packages:
+            # Prevent the mounting above from overwriting the app.
+            # https://github.com/docker/compose/issues/1607#issuecomment-240458538
+            - /var/www/alexys/wp-content/themes/alexys/node/node_modules
+            - /var/www/alexys/wp-content/themes/alexys/node/bower_components
+        links:
+            - database
+        depends_on:
+            - database
+        env_file:
+            - .env
+        ports:
+            - "80:80"
