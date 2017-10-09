@@ -1,0 +1,27 @@
+# Ignore everything:
+*
+
+# Except for:
+!.gitignore
+!.htaccess
+!.env
+!.gitattributes
+!composer.json
+!socker-compose.yml
+!setup.sh
+!.docker
+!.docker/**
+
+# WordPress Theme
+!/wp-content
+!/wp-content/themes
+!/wp-content/themes/alexys
+!/wp-content/themes/alexys/*
+!/wp-content/themes/alexys/node
+!/wp-content/themes/alexys/node/*
+!/wp-content/themes/alexys/scripts
+!/wp-content/themes/alexys/scripts/*
+!/wp-content/themes/alexys/styles
+!/wp-content/themes/alexys/styles/*
+
+/wp-content/themes/alexys/*.log
