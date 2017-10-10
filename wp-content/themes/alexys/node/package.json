@@ -1,0 +1,22 @@
+{
+    "name": "alexys",
+    "version": "1.0.0",
+    "description": "",
+    "author": "Elvis Oliveira <elvis.olv@gmail.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "grunt": "^1.0.1",
+        "grunt-contrib-copy": "^1.0.0"
+    },
+    "dependencies": {
+        "jquery": "^1.12.4",
+        "jquery-cycle": "^3.0.3"
+    },
+    "scripts": {
+        "assets": "npm update --no-bin-links && grunt"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/elvisoliveira/alexys.git"
+    }
+}
