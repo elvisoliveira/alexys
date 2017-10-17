@@ -21,13 +21,14 @@ fi
 
 # Download
 if [ ! -f "wp-settings.php" ]; then
-    wp core download --allow-root # --locale=pt_BR
+    wp core download --allow-root --locale=pt_BR
 fi
 
 # Config
 if [ ! -f "wp-config.php" ]; then
     # DB Config on docker-compose.yml
     wp core config --dbhost=database \
+                   --locale=pt_BR \
                    --dbname=$MYSQL_DATABASE \
                    --dbuser=$MYSQL_USER \
                    --dbpass=$MYSQL_PASSWORD \
@@ -67,10 +68,56 @@ if [ ! -f "wp-content/themes/alexys/post-types/banner.php" ]; then
 fi
 
 # Plugins: ACF
-wp plugin install advanced-custom-fields --activate --allow-root
+wp --allow-root plugin install advanced-custom-fields --activate
 
 # Plugins: Jetpack by WordPress.com
 wp --allow-root plugin install jetpack --activate
+
+# WooCommerce
+wp --allow-root plugin install woocommerce --activate
+
+## Translate
+mkdir wp-content/languages/woocommerce
+
+curl -o wp-content/languages/woocommerce/woocommerce-pt_BR.mo 'https://translate.wordpress.org/projects/wp-plugins/woocommerce/stable/pt-br/default/export-translations?format=mo'
+
+## Configure
+wp db query --allow-root 'UPDATE wp_options SET option_value="16" WHERE option_name="woocommerce_cart_page_id"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="17" WHERE option_name="woocommerce_checkout_page_id"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="18" WHERE option_name="woocommerce_myaccount_page_id"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="15" WHERE option_name="woocommerce_shop_page_id"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="" WHERE option_name="woocommerce_terms_page_id"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="yes" WHERE option_name="woocommerce_allow_tracking"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="specific" WHERE option_name="woocommerce_allowed_countries"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="no" WHERE option_name="woocommerce_calc_taxes"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="no" WHERE option_name="woocommerce_cart_redirect_after_add"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="BRL" WHERE option_name="woocommerce_currency"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="BR:ES" WHERE option_name="woocommerce_default_country"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="base" WHERE option_name="woocommerce_default_customer_address"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="cm" WHERE option_name="woocommerce_dimension_unit"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="yes" WHERE option_name="woocommerce_enable_ajax_add_to_cart"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="no" WHERE option_name="woocommerce_enable_coupons"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="yes" WHERE option_name="woocommerce_enable_guest_checkout"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="yes" WHERE option_name="woocommerce_enable_review_rating"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="no" WHERE option_name="woocommerce_enable_reviews"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="yes" WHERE option_name="woocommerce_enable_shipping_calc"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="yes" WHERE option_name="woocommerce_enable_signup_and_login_from_checkout"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="yes" WHERE option_name="woocommerce_hide_out_of_stock_items"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="60" WHERE option_name="woocommerce_hold_stock_minutes"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="customer-logout" WHERE option_name="woocommerce_logout_endpoint"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="no" WHERE option_name="woocommerce_prices_include_tax"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="physical" WHERE option_name="woocommerce_product_type"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="specific" WHERE option_name="woocommerce_ship_to_countries"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="billing" WHERE option_name="woocommerce_ship_to_destination"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="no" WHERE option_name="woocommerce_shipping_cost_requires_address"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="a:1:{i:0;s:2:\"BR\";}" WHERE option_name="woocommerce_specific_allowed_countries"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="a:1:{i:0;s:2:\"BR\";}" WHERE option_name="woocommerce_specific_ship_to_countries"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="R. Pres. Lima, 471" WHERE option_name="woocommerce_store_address"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="Centro de Vila Velha" WHERE option_name="woocommerce_store_address_2"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="Vila Velha" WHERE option_name="woocommerce_store_city"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="29100330" WHERE option_name="woocommerce_store_postcode"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="shipping" WHERE option_name="woocommerce_tax_based_on"'
+wp db query --allow-root 'UPDATE wp_options SET option_value="kg" WHERE option_name="woocommerce_weight_unit"'
 
 # Jetpack: Contact
 wp --allow-root jetpack module activate contact-form
@@ -126,7 +173,7 @@ if [ "$img" == "y" ]; then
         WP_IMAG="${WP_TEMP}/${WP_INDX}.jpg"
 
         # Download 5 ramdom images 1000x1000
-        curl -o ${WP_IMAG} 'https://unsplash.it/1000/1000/?random'
+        curl -o ${WP_IMAG} 'https://picsum.photos/1000/1000/?random'
 
         # Attach on WordPress
         WP_ATTC=$(wp media import ${WP_IMAG} --porcelain --allow-root)
