@@ -77,47 +77,21 @@ wp --allow-root plugin install jetpack --activate
 wp --allow-root plugin install woocommerce --activate
 
 ## Translate
-mkdir wp-content/languages/woocommerce
+if [ ! -d "wp-content/languages/woocommerce" ]; then
+    mkdir wp-content/languages/woocommerce
+fi
 
-curl -o wp-content/languages/woocommerce/woocommerce-pt_BR.mo 'https://translate.wordpress.org/projects/wp-plugins/woocommerce/stable/pt-br/default/export-translations?format=mo'
+if [ ! -f "wp-content/languages/woocommerce/woocommerce-pt_BR.mo" ]; then
+    curl -o wp-content/languages/woocommerce/woocommerce-pt_BR.mo 'https://translate.wordpress.org/projects/wp-plugins/woocommerce/stable/pt-br/default/export-translations?format=mo'
+fi
 
 ## Configure
-wp db query --allow-root 'UPDATE wp_options SET option_value="16" WHERE option_name="woocommerce_cart_page_id"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="17" WHERE option_name="woocommerce_checkout_page_id"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="18" WHERE option_name="woocommerce_myaccount_page_id"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="15" WHERE option_name="woocommerce_shop_page_id"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="" WHERE option_name="woocommerce_terms_page_id"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="yes" WHERE option_name="woocommerce_allow_tracking"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="specific" WHERE option_name="woocommerce_allowed_countries"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="no" WHERE option_name="woocommerce_calc_taxes"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="no" WHERE option_name="woocommerce_cart_redirect_after_add"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="BRL" WHERE option_name="woocommerce_currency"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="BR:ES" WHERE option_name="woocommerce_default_country"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="base" WHERE option_name="woocommerce_default_customer_address"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="cm" WHERE option_name="woocommerce_dimension_unit"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="yes" WHERE option_name="woocommerce_enable_ajax_add_to_cart"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="no" WHERE option_name="woocommerce_enable_coupons"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="yes" WHERE option_name="woocommerce_enable_guest_checkout"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="yes" WHERE option_name="woocommerce_enable_review_rating"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="no" WHERE option_name="woocommerce_enable_reviews"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="yes" WHERE option_name="woocommerce_enable_shipping_calc"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="yes" WHERE option_name="woocommerce_enable_signup_and_login_from_checkout"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="yes" WHERE option_name="woocommerce_hide_out_of_stock_items"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="60" WHERE option_name="woocommerce_hold_stock_minutes"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="customer-logout" WHERE option_name="woocommerce_logout_endpoint"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="no" WHERE option_name="woocommerce_prices_include_tax"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="physical" WHERE option_name="woocommerce_product_type"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="specific" WHERE option_name="woocommerce_ship_to_countries"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="billing" WHERE option_name="woocommerce_ship_to_destination"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="no" WHERE option_name="woocommerce_shipping_cost_requires_address"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="a:1:{i:0;s:2:\"BR\";}" WHERE option_name="woocommerce_specific_allowed_countries"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="a:1:{i:0;s:2:\"BR\";}" WHERE option_name="woocommerce_specific_ship_to_countries"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="R. Pres. Lima, 471" WHERE option_name="woocommerce_store_address"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="Centro de Vila Velha" WHERE option_name="woocommerce_store_address_2"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="Vila Velha" WHERE option_name="woocommerce_store_city"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="29100330" WHERE option_name="woocommerce_store_postcode"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="shipping" WHERE option_name="woocommerce_tax_based_on"'
-wp db query --allow-root 'UPDATE wp_options SET option_value="kg" WHERE option_name="woocommerce_weight_unit"'
+declare -a option_name=("woocommerce_cart_page_id" "woocommerce_checkout_page_id" "woocommerce_myaccount_page_id" "woocommerce_shop_page_id" "woocommerce_allow_tracking" "woocommerce_allowed_countries" "woocommerce_calc_taxes" "woocommerce_cart_redirect_after_add" "woocommerce_currency" "woocommerce_default_country" "woocommerce_default_customer_address" "woocommerce_dimension_unit" "woocommerce_enable_ajax_add_to_cart" "woocommerce_enable_coupons" "woocommerce_enable_guest_checkout" "woocommerce_enable_review_rating" "woocommerce_enable_reviews" "woocommerce_enable_shipping_calc" "woocommerce_enable_signup_and_login_from_checkout" "woocommerce_hide_out_of_stock_items" "woocommerce_hold_stock_minutes" "woocommerce_logout_endpoint" "woocommerce_prices_include_tax" "woocommerce_product_type" "woocommerce_ship_to_countries" "woocommerce_ship_to_destination" "woocommerce_shipping_cost_requires_address" "woocommerce_specific_allowed_countries" "woocommerce_specific_ship_to_countries" "woocommerce_store_address" "woocommerce_store_address_2" "woocommerce_store_city" "woocommerce_store_postcode" "woocommerce_tax_based_on" "woocommerce_weight_unit")
+declare -a option_value=("16" "17" "18" "15" "yes" "specific" "no" "no" "BRL" "BR:ES" "base" "cm" "yes" "no" "yes" "yes" "no" "yes" "yes" "yes" "60" "customer-logout" "no" "physical" "specific" "billing" "no" 'a:1:{i:0;s:2:\"BR\";}' 'a:1:{i:0;s:2:\"BR\";}' "R. Pres. Lima, 471" "Centro de Vila Velha" "Vila Velha" "29100330" "shipping" "kg")
+
+for ((i=0;i<${#option_name[@]};i++)); do
+    wp db query --allow-root "UPDATE wp_options SET option_value=\"${option_value[$i]}\" WHERE option_name=\"${option_name[$i]}\""
+done
 
 # Jetpack: Contact
 wp --allow-root jetpack module activate contact-form
