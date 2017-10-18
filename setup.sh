@@ -48,7 +48,7 @@ while [[ -z "$admin_email" ]]; do
     read -p "[WP] Email: " admin_email
 done
 
-wp core install --url=http://alexys/ \
+wp core install --url=http://alexys.ddns.net/ \
                 --title='Alexys' \
                 --admin_user=$admin_user \
                 --admin_email=$admin_email \
@@ -67,33 +67,25 @@ if [ ! -f "wp-content/themes/alexys/post-types/banner.php" ]; then
                                  --allow-root
 fi
 
-# Plugins: ACF
-wp --allow-root plugin install advanced-custom-fields --activate
+# Plugin Install
+declare -a plugins=("advanced-custom-fields" "jetpack" "woocommerce" "woocommerce-correios" "woocommerce-pagseguro")
 
-# Plugins: Jetpack by WordPress.com
-wp --allow-root plugin install jetpack --activate
+for ((i=0;i<${#plugins[@]};i++)); do
+    # Plugin Download
+    wp --allow-root plugin install ${plugins[$i]} --activate
 
-# WooCommerce
-wp --allow-root plugin install woocommerce --activate
-
-## WooCommerce: Correios
-wp --allow-root plugin install woocommerce-correios --activate
-
-## WooCommerce: Translate
-if [ ! -d "wp-content/languages/woocommerce" ]; then
-    mkdir wp-content/languages/woocommerce
-fi
-
-if [ ! -f "wp-content/languages/woocommerce/woocommerce-pt_BR.mo" ]; then
-    curl -o wp-content/languages/woocommerce/woocommerce-pt_BR.mo 'https://translate.wordpress.org/projects/wp-plugins/woocommerce/stable/pt-br/default/export-translations?format=mo'
-fi
+    # Plugin Translate
+    if [ ! -f "wp-content/languages/plugins/${plugins[$i]}-pt_BR.mo" ]; then
+        curl -o "wp-content/languages/plugins/${plugins[$i]}-pt_BR.mo" "https://translate.wordpress.org/projects/wp-plugins/${plugins[$i]}/stable/pt-br/default/export-translations?format=mo"
+    fi
+done
 
 ## WooCommerce: Configure Params
-declare -a option_name=("cart_page_id" "checkout_page_id" "myaccount_page_id" "shop_page_id" "allow_tracking" "allowed_countries" "calc_taxes" "cart_redirect_after_add" "currency" "default_country" "default_customer_address" "dimension_unit" "enable_ajax_add_to_cart" "enable_coupons" "enable_guest_checkout" "enable_review_rating" "enable_reviews" "enable_shipping_calc" "enable_signup_and_login_from_checkout" "hide_out_of_stock_items" "hold_stock_minutes" "logout_endpoint" "prices_include_tax" "product_type" "ship_to_countries" "ship_to_destination" "shipping_cost_requires_address" "specific_allowed_countries" "specific_ship_to_countries" "store_address" "store_address_2" "store_city" "store_postcode" "tax_based_on" "weight_unit" "admin_notices")
-declare -a option_value=("16" "17" "18" "15" "yes" "specific" "no" "no" "BRL" "BR:ES" "base" "cm" "yes" "no" "yes" "yes" "no" "yes" "yes" "yes" "60" "customer-logout" "no" "physical" "specific" "billing" "no" 'a:1:{i:0;s:2:\"BR\";}' 'a:1:{i:0;s:2:\"BR\";}' "R. Pres. Lima, 471" "Centro de Vila Velha" "Vila Velha" "29100330" "shipping" "kg" "a:0:{}")
+declare -a option_name=("allow_tracking" "allowed_countries" "calc_taxes" "cart_redirect_after_add" "currency" "default_country" "default_customer_address" "dimension_unit" "enable_ajax_add_to_cart" "enable_coupons" "enable_guest_checkout" "enable_review_rating" "enable_reviews" "enable_shipping_calc" "enable_signup_and_login_from_checkout" "hide_out_of_stock_items" "hold_stock_minutes" "logout_endpoint" "prices_include_tax" "product_type" "ship_to_countries" "ship_to_destination" "shipping_cost_requires_address" "specific_allowed_countries" "specific_ship_to_countries" "store_address" "store_address_2" "store_city" "store_postcode" "tax_based_on" "weight_unit" "admin_notices")
+declare -a option_value=("yes" "specific" "no" "no" "BRL" "BR:ES" "base" "cm" "yes" "no" "yes" "yes" "no" "yes" "yes" "yes" "60" "customer-logout" "no" "physical" "specific" "billing" "no" 'a:1:{i:0;s:2:\"BR\";}' 'a:1:{i:0;s:2:\"BR\";}' "R. Pres. Lima, 471" "Centro de Vila Velha" "Vila Velha" "29100330" "shipping" "kg" "a:0:{}")
 
 for ((i=0;i<${#option_name[@]};i++)); do
-    wp db query --allow-root "UPDATE wp_options SET option_value=\"${option_value[$i]}\" WHERE option_name=\"woocommerce_{option_name[$i]}\""
+    wp db query --allow-root "UPDATE wp_options SET option_value=\"${option_value[$i]}\" WHERE option_name=\"woocommerce_${option_name[$i]}\""
 done
 
 ## WooCommerce: Configure Shipping
