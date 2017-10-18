@@ -89,11 +89,11 @@ if [ ! -f "wp-content/languages/woocommerce/woocommerce-pt_BR.mo" ]; then
 fi
 
 ## WooCommerce: Configure Params
-declare -a option_name=("woocommerce_cart_page_id" "woocommerce_checkout_page_id" "woocommerce_myaccount_page_id" "woocommerce_shop_page_id" "woocommerce_allow_tracking" "woocommerce_allowed_countries" "woocommerce_calc_taxes" "woocommerce_cart_redirect_after_add" "woocommerce_currency" "woocommerce_default_country" "woocommerce_default_customer_address" "woocommerce_dimension_unit" "woocommerce_enable_ajax_add_to_cart" "woocommerce_enable_coupons" "woocommerce_enable_guest_checkout" "woocommerce_enable_review_rating" "woocommerce_enable_reviews" "woocommerce_enable_shipping_calc" "woocommerce_enable_signup_and_login_from_checkout" "woocommerce_hide_out_of_stock_items" "woocommerce_hold_stock_minutes" "woocommerce_logout_endpoint" "woocommerce_prices_include_tax" "woocommerce_product_type" "woocommerce_ship_to_countries" "woocommerce_ship_to_destination" "woocommerce_shipping_cost_requires_address" "woocommerce_specific_allowed_countries" "woocommerce_specific_ship_to_countries" "woocommerce_store_address" "woocommerce_store_address_2" "woocommerce_store_city" "woocommerce_store_postcode" "woocommerce_tax_based_on" "woocommerce_weight_unit")
-declare -a option_value=("16" "17" "18" "15" "yes" "specific" "no" "no" "BRL" "BR:ES" "base" "cm" "yes" "no" "yes" "yes" "no" "yes" "yes" "yes" "60" "customer-logout" "no" "physical" "specific" "billing" "no" 'a:1:{i:0;s:2:\"BR\";}' 'a:1:{i:0;s:2:\"BR\";}' "R. Pres. Lima, 471" "Centro de Vila Velha" "Vila Velha" "29100330" "shipping" "kg")
+declare -a option_name=("cart_page_id" "checkout_page_id" "myaccount_page_id" "shop_page_id" "allow_tracking" "allowed_countries" "calc_taxes" "cart_redirect_after_add" "currency" "default_country" "default_customer_address" "dimension_unit" "enable_ajax_add_to_cart" "enable_coupons" "enable_guest_checkout" "enable_review_rating" "enable_reviews" "enable_shipping_calc" "enable_signup_and_login_from_checkout" "hide_out_of_stock_items" "hold_stock_minutes" "logout_endpoint" "prices_include_tax" "product_type" "ship_to_countries" "ship_to_destination" "shipping_cost_requires_address" "specific_allowed_countries" "specific_ship_to_countries" "store_address" "store_address_2" "store_city" "store_postcode" "tax_based_on" "weight_unit" "admin_notices")
+declare -a option_value=("16" "17" "18" "15" "yes" "specific" "no" "no" "BRL" "BR:ES" "base" "cm" "yes" "no" "yes" "yes" "no" "yes" "yes" "yes" "60" "customer-logout" "no" "physical" "specific" "billing" "no" 'a:1:{i:0;s:2:\"BR\";}' 'a:1:{i:0;s:2:\"BR\";}' "R. Pres. Lima, 471" "Centro de Vila Velha" "Vila Velha" "29100330" "shipping" "kg" "a:0:{}")
 
 for ((i=0;i<${#option_name[@]};i++)); do
-    wp db query --allow-root "UPDATE wp_options SET option_value=\"${option_value[$i]}\" WHERE option_name=\"${option_name[$i]}\""
+    wp db query --allow-root "UPDATE wp_options SET option_value=\"${option_value[$i]}\" WHERE option_name=\"woocommerce_{option_name[$i]}\""
 done
 
 ## WooCommerce: Configure Shipping
@@ -122,6 +122,21 @@ wp post create ./.docker/wordpress/post-content.txt --allow-root \
                                                     --post_type='page' \
                                                     --post_status='publish' \
                                                     --post_title='Home'
+
+declare -a page_slug=("cart" "myaccount" "checkout" "shop" "terms")
+declare -a page_name=("Carrinho" "Minha conta" "Finalizar compra" "Shop" "Terms and Conditions")
+
+# Pages
+for ((i=0;i<${#page_slug[@]};i++)); do
+    wp post create "./.docker/wordpress/page-${page_slug[$i]}.txt" --allow-root \
+                                                                   --post_type='page' \
+                                                                   --post_status='publish' \
+                                                                   --post_title="${page_name[$i]}"
+
+    WP_PAGE=$(wp --allow-root db query "SELECT ID FROM wp_posts WHERE post_title = \"${page_name[$i]}\"" | paste -s -d',' | sed "s/^ID,//")
+
+    wp db query --allow-root "UPDATE wp_options SET option_value='${WP_PAGE}' WHERE option_name='woocommerce_${page_slug[$i]}_page_id'"
+done
 
 # Slugfy
 wp rewrite structure '/%postname%' --allow-root
