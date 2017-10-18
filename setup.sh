@@ -76,7 +76,10 @@ wp --allow-root plugin install jetpack --activate
 # WooCommerce
 wp --allow-root plugin install woocommerce --activate
 
-## Translate
+## WooCommerce: Correios
+wp --allow-root plugin install woocommerce-correios --activate
+
+## WooCommerce: Translate
 if [ ! -d "wp-content/languages/woocommerce" ]; then
     mkdir wp-content/languages/woocommerce
 fi
@@ -85,13 +88,16 @@ if [ ! -f "wp-content/languages/woocommerce/woocommerce-pt_BR.mo" ]; then
     curl -o wp-content/languages/woocommerce/woocommerce-pt_BR.mo 'https://translate.wordpress.org/projects/wp-plugins/woocommerce/stable/pt-br/default/export-translations?format=mo'
 fi
 
-## Configure
+## WooCommerce: Configure Params
 declare -a option_name=("woocommerce_cart_page_id" "woocommerce_checkout_page_id" "woocommerce_myaccount_page_id" "woocommerce_shop_page_id" "woocommerce_allow_tracking" "woocommerce_allowed_countries" "woocommerce_calc_taxes" "woocommerce_cart_redirect_after_add" "woocommerce_currency" "woocommerce_default_country" "woocommerce_default_customer_address" "woocommerce_dimension_unit" "woocommerce_enable_ajax_add_to_cart" "woocommerce_enable_coupons" "woocommerce_enable_guest_checkout" "woocommerce_enable_review_rating" "woocommerce_enable_reviews" "woocommerce_enable_shipping_calc" "woocommerce_enable_signup_and_login_from_checkout" "woocommerce_hide_out_of_stock_items" "woocommerce_hold_stock_minutes" "woocommerce_logout_endpoint" "woocommerce_prices_include_tax" "woocommerce_product_type" "woocommerce_ship_to_countries" "woocommerce_ship_to_destination" "woocommerce_shipping_cost_requires_address" "woocommerce_specific_allowed_countries" "woocommerce_specific_ship_to_countries" "woocommerce_store_address" "woocommerce_store_address_2" "woocommerce_store_city" "woocommerce_store_postcode" "woocommerce_tax_based_on" "woocommerce_weight_unit")
 declare -a option_value=("16" "17" "18" "15" "yes" "specific" "no" "no" "BRL" "BR:ES" "base" "cm" "yes" "no" "yes" "yes" "no" "yes" "yes" "yes" "60" "customer-logout" "no" "physical" "specific" "billing" "no" 'a:1:{i:0;s:2:\"BR\";}' 'a:1:{i:0;s:2:\"BR\";}' "R. Pres. Lima, 471" "Centro de Vila Velha" "Vila Velha" "29100330" "shipping" "kg")
 
 for ((i=0;i<${#option_name[@]};i++)); do
     wp db query --allow-root "UPDATE wp_options SET option_value=\"${option_value[$i]}\" WHERE option_name=\"${option_name[$i]}\""
 done
+
+## WooCommerce: Configure Shipping
+wp --allow-root db query < .docker/database/woocommerce_shipping.sql
 
 # Jetpack: Contact
 wp --allow-root jetpack module activate contact-form
