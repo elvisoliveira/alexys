@@ -2,7 +2,8 @@
 # docker exec -i -t alexys-webserver /bin/sh -c "/var/www/alexys/setup.sh"
 #
 # Check line endings, it must be unix like styled
-# Don't forget to remap your hosts file to: alexys.ddns.net
+# Don't forget to: Remap your hosts file to: alexys.ddns.net
+#                  Set the info from the payment gateway. (PagSeguro)
 ################################################################################
 
 # Node.js resources
@@ -71,20 +72,26 @@ fi
 declare -a plugins=("advanced-custom-fields" "jetpack" "woocommerce" 
                     "woocommerce-correios" "woocommerce-pagseguro")
 
+WP_LANG_FLD="wp-content/languages/plugins"
+WP_LANGUAGE="pt_BR"
+
+if [ ! -d "wp-content/languages" ]; then
+    mkdir "wp-content/languages";
+fi
+
+if [ ! -d "${WP_LANG_FLD}" ]; then
+    mkdir "${WP_LANG_FLD}";
+fi
+
 for ((i=0;i<${#plugins[@]};i++)); do
+
     # Plugin Download
     wp --allow-root plugin install ${plugins[$i]} --activate
 
     # Plugin Translate
-    if [ ! -f "wp-content/languages/plugins/${plugins[$i]}-pt_BR.mo" ]; then
-        url=(
-            "https://translate.wordpress.org/" "projects/" "wp-plugins/"
-            "${plugins[$i]}/" "stable/" "pt-br/" "default/"
-            "export-translations?format=mo"
-        )
-
-        curl -o "wp-content/languages/plugins/${plugins[$i]}-pt_BR.mo" \
-                "${url[*]}"
+    if [ ! -f "${WP_LANG_FLD}/${plugins[$i]}-${WP_LANGUAGE}.mo" ]; then
+        curl -o "${WP_LANG_FLD}/${plugins[$i]}-${WP_LANGUAGE}.mo" \
+        "https://translate.wordpress.org/projects/wp-plugins/${plugins[$i]}/stable/pt-br/default/export-translations?format=mo"
     fi
 done
 
@@ -114,6 +121,65 @@ done
 
 ## WooCommerce: Configure Shipping
 wp --allow-root db query < .docker/database/woocommerce_shipping.sql
+
+## WooCommerce: Disable alternative payments
+wp --allow-root eval "update_option('woocommerce_cod_settings', array('enabled' => 'no'));"
+wp --allow-root eval "update_option('woocommerce_bacs_settings', array('enabled' => 'no'));"
+wp --allow-root eval "update_option('woocommerce_cheque_settings', array('enabled' => 'no'));"
+wp --allow-root eval "update_option('woocommerce_paypal_settings', array('enabled' => 'no'));"
+
+## WooCommerce: Enable Pagseguro
+wp --allow-root eval "update_option('woocommerce_pagseguro_settings',
+                                    array('sandbox_email' => '', /* ----- Pagseguro ---- */
+                                          'sandbox_token' => '', /* ----- Pagseguro ---- */
+                                          'debug' => 'no',
+                                          'title' => 'PagSeguro',
+                                          'method' => 'lightbox',
+                                          'sandbox' => 'yes',
+                                          'enabled' => 'yes',
+                                          'tc_credit' => 'yes',
+                                          'tc_ticket' => 'yes',
+                                          'tc_transfer' => 'yes',
+                                          'description' => 'Pay via PagSeguro',
+                                          'invoice_prefix' => 'WC-',
+                                          'send_only_total' => 'no',
+                                          'tc_ticket_message' => 'yes')
+                                   );"
+
+## WooCommerce Correios: Enable Submission Methods
+wp --allow-root eval "update_option('woocommerce_correios-pac_1_settings',
+                                    array('debug' => 'no',
+                                          'title' => 'PAC',
+                                          'enabled' => 'yes',
+                                          'own_hands' => 'no',
+                                          'service_type' => 'conventional',
+                                          'extra_weight' => '0',
+                                          'declare_value' => 'yes',
+                                          'minimum_width' => '11',
+                                          'receipt_notice' => 'no',
+                                          'minimum_height' => '2',
+                                          'minimum_length' => '16',
+                                          'origin_postcode' => '29100-330',
+                                          'additional_time' => '2',
+                                          'show_delivery_time' => 'yes')
+                                    );"
+
+wp --allow-root eval "update_option('woocommerce_correios-sedex_2_settings',
+                                    array('debug' => 'no',
+                                          'title' => 'SEDEX',
+                                          'enabled' => 'yes',
+                                          'own_hands' => 'no',
+                                          'service_type' => 'conventional',
+                                          'extra_weight' => '0',
+                                          'minimum_width' => '11',
+                                          'declare_value' => 'yes',
+                                          'minimum_length' => '16',
+                                          'minimum_height' => '2',
+                                          'receipt_notice' => 'no',
+                                          'additional_time' => '2',
+                                          'origin_postcode' => '29100-330',
+                                          'show_delivery_time' => 'yes')
+                                    );"
 
 # Jetpack: Contact
 wp --allow-root jetpack module activate contact-form
