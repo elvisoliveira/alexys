@@ -2,7 +2,7 @@
 # docker exec -i -t alexys-webserver /bin/sh -c "/var/www/alexys/setup.sh"
 #
 # Check line endings, it must be unix like styled
-# Don't forget to remap your hosts file to: alexys
+# Don't forget to remap your hosts file to: alexys.ddns.net
 ################################################################################
 
 # Node.js resources
@@ -76,7 +76,7 @@ for ((i=0;i<${#plugins[@]};i++)); do
     wp --allow-root plugin install ${plugins[$i]} --activate
 
     # Plugin Translate
-    if [ -f "wp-content/languages/plugins/${plugins[$i]}-pt_BR.mo" ]; then
+    if [ ! -f "wp-content/languages/plugins/${plugins[$i]}-pt_BR.mo" ]; then
         url=(
             "https://translate.wordpress.org/" "projects/" "wp-plugins/"
             "${plugins[$i]}/" "stable/" "pt-br/" "default/"
