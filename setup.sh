@@ -128,10 +128,14 @@ wp --allow-root eval "update_option('woocommerce_bacs_settings', array('enabled'
 wp --allow-root eval "update_option('woocommerce_cheque_settings', array('enabled' => 'no'));"
 wp --allow-root eval "update_option('woocommerce_paypal_settings', array('enabled' => 'no'));"
 
+# Pagseguro Settings
+read -p "Pagseguro mail: " pagmail
+read -p "Pagseguro token: " pagtoken
+
 ## WooCommerce: Enable Pagseguro
 wp --allow-root eval "update_option('woocommerce_pagseguro_settings',
-                                    array('sandbox_email' => '', /* ----- Pagseguro ---- */
-                                          'sandbox_token' => '', /* ----- Pagseguro ---- */
+                                    array('sandbox_email' => '$pagmail', /* ----- Pagseguro ---- */
+                                          'sandbox_token' => '$pagtoken', /* ----- Pagseguro ---- */
                                           'debug' => 'no',
                                           'title' => 'PagSeguro',
                                           'method' => 'lightbox',
