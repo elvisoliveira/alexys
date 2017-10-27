@@ -14,11 +14,26 @@ while [[ -z "$npm" ]]; do
 done
 
 if [ "$npm" == "y" ]; then
-  (cd ./wp-content/themes/alexys/node && npm run assets)
+    (cd ./wp-content/themes/alexys/node && npm run assets)
 fi
 
 # WordPress Install ############################################################
 ################################################################################
+
+# Clear
+read -p "Clear current filesystem? y/n [n] " erase
+
+while [[ -z "$erase" ]]; do
+    erase="n"
+done
+
+if [ "$erase" == "y" ]; then
+    # Drop DB
+    wp db drop --yes --allow-root
+    # Remove all
+    rm -rf *.php *.html *.txt ./wp-admin ./wp-includes ./wp-content/languages
+    rm -rf ./wp-content/plugins ./wp-content/upgrade ./wp-content/uploads
+fi
 
 # Download
 if [ ! -f "wp-settings.php" ]; then
@@ -34,6 +49,8 @@ if [ ! -f "wp-config.php" ]; then
                    --dbuser=$MYSQL_USER \
                    --dbpass=$MYSQL_PASSWORD \
                    --allow-root
+    # DB CREATE
+    wp db create --allow-root
 fi
 
 # Install
@@ -46,7 +63,12 @@ while [[ -z "$admin_password" ]]; do
 done
 
 while [[ -z "$admin_email" ]]; do
-    read -p "[WP] Email: " admin_email
+    read -p "[WP / PagSeguro] Email: " admin_email
+done
+
+# Pagseguro Settings
+while [[ -z "$pagseguro_token" ]]; do
+    read -p "[PagSeguro] Token: " pagseguro_token
 done
 
 wp core install --url=http://alexys.ddns.net/ \
@@ -128,14 +150,10 @@ wp --allow-root eval "update_option('woocommerce_bacs_settings', array('enabled'
 wp --allow-root eval "update_option('woocommerce_cheque_settings', array('enabled' => 'no'));"
 wp --allow-root eval "update_option('woocommerce_paypal_settings', array('enabled' => 'no'));"
 
-# Pagseguro Settings
-read -p "Pagseguro mail: " pagmail
-read -p "Pagseguro token: " pagtoken
-
 ## WooCommerce: Enable Pagseguro
 wp --allow-root eval "update_option('woocommerce_pagseguro_settings',
-                                    array('sandbox_email' => '$pagmail', /* ----- Pagseguro ---- */
-                                          'sandbox_token' => '$pagtoken', /* ----- Pagseguro ---- */
+                                    array('sandbox_email' => '$admin_email', /* ----- Pagseguro ---- */
+                                          'sandbox_token' => '$pagseguro_token', /* ----- Pagseguro ---- */
                                           'debug' => 'no',
                                           'title' => 'PagSeguro',
                                           'method' => 'lightbox',
