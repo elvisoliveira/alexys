@@ -242,6 +242,12 @@ for ((i=0;i<${#page_slug[@]};i++)); do
                                           FROM wp_posts 
                                          WHERE post_title = \"${page_name[$i]}\"" | paste -s -d',' | sed "s/^ID,//")
 
+    if [ "${page_name[$i]}" == "Shop" ]; then
+        # Set default page to Shop
+        wp option update --allow-root show_on_front page
+        wp option update --allow-root page_on_front ${WP_PAGE}
+    fi
+
     wp db query --allow-root "UPDATE wp_options 
                                  SET option_value='${WP_PAGE}'
                                WHERE option_name='woocommerce_${page_slug[$i]}_page_id'"
