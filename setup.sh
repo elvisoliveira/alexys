@@ -219,7 +219,7 @@ wp site empty --yes --allow-root
 wp post create ./.docker/wordpress/post-content.txt --allow-root \
                                                     --post_type='page' \
                                                     --post_status='publish' \
-                                                    --post_title='About'
+                                                    --post_title='Sobre'
 
 # Page: Home
 wp post create ./.docker/wordpress/post-content.txt --allow-root \
@@ -255,6 +255,31 @@ done
 
 # Slugfy
 wp rewrite structure '/%postname%' --allow-root
+
+# WooCommerce: Categories ######################################################
+################################################################################
+
+declare -a product_categories=("Bermuda" "Blusa" "Body" "Camisa" "Casaco" "Jaqueta"
+                               "Legging" "Macacão" "Regata" "Shorts" "Top" "Tshirt"
+                               "Blazer" "Calça" "Cardigã" "Colete" "Kaftan" "Lingerie"
+                               "Moletom" "Saia" "Spencer" "Trenchcoat" "Vestido" )
+
+# Pages
+for ((i=0;i<${#product_categories[@]};i++)); do
+    wp wc product_cat create --name=${product_categories[$i]} --user=admin --allow-root
+done
+
+# WooCommerce: Products ########################################################
+################################################################################
+
+wp wc product create --stock_quantity="50"                         \
+                     --regular_price="99.99"                       \
+                     --categories='[{"id":21}]'                    \
+                     --sale_price="80"                             \
+                     --status="publish"                            \
+                     --name="Example Product"                      \
+                     --user="admin"                                \
+                     --allow-root
 
 # WordPress Content: Menu ######################################################
 ################################################################################
