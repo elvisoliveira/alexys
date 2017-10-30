@@ -215,24 +215,24 @@ wp --allow-root theme activate alexys
 # Delete default post.
 wp site empty --yes --allow-root
 
-# Page: About
-wp post create ./.docker/wordpress/post-content.txt --allow-root \
-                                                    --post_type='page' \
-                                                    --post_status='publish' \
-                                                    --post_title='Sobre'
-
 # Page: Home
-wp post create ./.docker/wordpress/post-content.txt --allow-root \
-                                                    --post_type='page' \
-                                                    --post_status='publish' \
-                                                    --post_title='Home'
+wp post create "./.docker/wordpress/post-content.txt" --allow-root \
+                                                      --post_type='page' \
+                                                      --post_status='publish' \
+                                                      --post_title='Home'
 
-declare -a page_slug=("cart" "myaccount" "checkout" "shop" "terms")
+declare -a page_slug=("cart" "myaccount" "checkout" "shop" 
+                      "terms" "brand" "blog")
 declare -a page_name=("Carrinho" "Minha conta" "Finalizar compra"
-                      "Shop" "Terms and Conditions")
+                      "Shop" "Termos e Condições" "Nossa Marca" "Blog")
 
 # Pages
 for ((i=0;i<${#page_slug[@]};i++)); do
+
+    if [ ! -f "./.docker/wordpress/page-${page_slug[$i]}.txt" ]; then
+        cp "./.docker/wordpress/post-content.txt" "./.docker/wordpress/page-${page_slug[$i]}.txt"
+    fi
+
     wp post create "./.docker/wordpress/page-${page_slug[$i]}.txt" --allow-root \
                                                                    --post_type='page' \
                                                                    --post_status='publish' \
@@ -264,7 +264,6 @@ declare -a product_categories=("Bermuda" "Blusa" "Body" "Camisa" "Casaco" "Jaque
                                "Blazer" "Calça" "Cardigã" "Colete" "Kaftan" "Lingerie"
                                "Moletom" "Saia" "Spencer" "Trenchcoat" "Vestido" )
 
-# Pages
 for ((i=0;i<${#product_categories[@]};i++)); do
     wp wc product_cat create --name=${product_categories[$i]} --user=admin --allow-root
 done
@@ -272,22 +271,39 @@ done
 # WooCommerce: Products ########################################################
 ################################################################################
 
-wp wc product create --stock_quantity="50"                         \
-                     --regular_price="99.99"                       \
-                     --categories='[{"id":21}]'                    \
-                     --sale_price="80"                             \
-                     --status="publish"                            \
-                     --name="Example Product"                      \
-                     --user="admin"                                \
-                     --allow-root
+declare -a products=("External/Affiliate Product" "Downloadable Product" "Side Slits Sweatshirt"
+                     "Side Pockets Backpack" "Oversized Sweater" "Tencel Shirt" "Yellow Sweatshirt"
+                     "Oversized Denim Jacket" "White Textured Sneakers" "Black Sneakers"
+                     "Short Faux Fur Coat" "Technical Pieces Sneakers" "Red Lace-up Sneakers"
+                     "Tailored Joggers" "Faux Leather Biker Jacket" "Retro Flower Pattern Black Dress"
+                     "The White Stripes" "Limited Edition Denim" "Black Denim Jacket")
+
+for ((i=0;i<${#products[@]};i++)); do
+    wp wc product create --stock_quantity="$(shuf -i 10-30 -n 1)"                              \
+                         --regular_price="$(shuf -i 50-99 -n 1)"                               \
+                         --sale_price="$(shuf -i 1-49 -n 1)"                                   \
+                         --status="publish"                                                    \
+                         --categories="[{\"id\":$(shuf -i 1-${#product_categories[@]} -n 1)}]" \
+                         --name="${products[$i]}"                                              \
+                         --user="admin"                                                        \
+                         --allow-root
+done
 
 # WordPress Content: Menu ######################################################
 ################################################################################
 
-wp menu create "Home" --allow-root
+wp menu create "hTop" --allow-root # Header Top
+wp menu create "hSub" --allow-root # Header Sub
 
 # Menu: Item
-wp --allow-root menu item add-custom home 'About' / --target=about
+wp --allow-root menu item add-custom htop 'Home' / --target=home
+wp --allow-root menu item add-custom htop 'Produtos' / --target=shop
+wp --allow-root menu item add-custom htop 'Dúvidas Frequentes' / --target=faq
+wp --allow-root menu item add-custom htop 'Blog' / --target=blog
+
+wp --allow-root menu item add-custom hsub 'Termos e Condições' / --target=terms
+wp --allow-root menu item add-custom hsub 'Nossa Marca' / --target=brand
+wp --allow-root menu item add-custom hsub 'Carrinho' / --target=cart
 
 # WordPress Content: Banner ####################################################
 ################################################################################
