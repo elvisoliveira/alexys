@@ -37,7 +37,7 @@ fi
 
 # Download
 if [ ! -f "wp-settings.php" ]; then
-    wp core download --allow-root --locale=pt_BR
+    wp core download --version=4.8.2 --allow-root --locale=pt_BR
 fi
 
 # Config
@@ -220,11 +220,21 @@ declare -a page_slug=("home" "brand" "blog" "faq")
 declare -a page_name=("Home" "Nossa Marca" "Blog" "Dúvidas Frequentes")
 
 for ((i=0;i<${#page_slug[@]};i++)); do
-  wp post create "./.docker/wordpress/post-content.txt" --allow-root \
-                                                        --post_type='page' \
-                                                        --post_status='publish' \
-                                                        --post_name="${page_slug[$i]}" \
-                                                        --post_title="${page_name[$i]}"
+    wp post create "./.docker/wordpress/post-content.txt" --allow-root \
+                                                          --post_type='page' \
+                                                          --post_status='publish' \
+                                                          --post_name="${page_slug[$i]}" \
+                                                          --post_title="${page_name[$i]}"
+
+    WP_PAGE=$(wp --allow-root db query "SELECT ID 
+                                          FROM wp_posts 
+                                         WHERE post_title = \"${page_name[$i]}\"" | paste -s -d',' | sed "s/^ID,//")
+
+    if [ "${page_name[$i]}" == "Home" ]; then
+        # Set default page to Home
+        wp option update --allow-root show_on_front page
+        wp option update --allow-root page_on_front ${WP_PAGE}
+    fi
 done
 
 # Pages: WooCommerce
@@ -242,12 +252,6 @@ for ((i=0;i<${#woo_slug[@]};i++)); do
     WP_PAGE=$(wp --allow-root db query "SELECT ID 
                                           FROM wp_posts 
                                          WHERE post_title = \"${woo_name[$i]}\"" | paste -s -d',' | sed "s/^ID,//")
-
-    if [ "${woo_name[$i]}" == "Shop" ]; then
-        # Set default page to Shop
-        wp option update --allow-root show_on_front page
-        wp option update --allow-root page_on_front ${WP_PAGE}
-    fi
 
     wp db query --allow-root "UPDATE wp_options 
                                  SET option_value='${WP_PAGE}'
