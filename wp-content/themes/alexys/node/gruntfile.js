@@ -28,17 +28,6 @@ module.exports = function(grunt) {
                 }
             }
         },
-        postcss: {
-            options: {
-                map: true,
-                processors: [
-                    require('cssnano')()
-                ]
-            },
-            dist: {
-                src: '../style.css'
-            }
-        },
         watch: {
             options: {
                 spawn: false,
@@ -48,16 +37,15 @@ module.exports = function(grunt) {
                 files: [
                     '../styles/*.scss'
                 ],
-                tasks: ['sass', 'postcss']
+                tasks: ['sass']
             }
         }
     });
 
-    grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.registerTask('default', ['copy', 'sass', 'postcss']);
-    grunt.registerTask('develop', ['copy', 'sass', 'postcss', 'watch']);
+    grunt.registerTask('default', ['copy', 'sass']);
+    grunt.registerTask('develop', ['copy', 'sass', 'watch']);
 };
