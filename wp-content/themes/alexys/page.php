@@ -8,6 +8,7 @@
         <meta name="author" content="http://github.com/elvisoliveira" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
+        <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_url'); ?>" />
         <!-- WordPress Head -->
         <?php wp_head(); ?>
     </head>
