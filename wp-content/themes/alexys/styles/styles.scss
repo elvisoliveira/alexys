@@ -1,0 +1,43 @@
+/*
+ * Theme Name: Alexys
+ * Theme URI: https://github.com/elvisoliveira/alexys
+ * Author: Elvis Oliveira
+ * Author URI: https://github.com/elvisoliveira
+ * Description: Blog template converted to Wordpress.
+ * Version: 0.0.2
+ */
+
+// Responsive Sizes
+$break-small: 900px;
+
+@-ms-viewport{
+    width: device-width;
+}
+
+// Mixins
+@mixin centralize($rollback) {
+    left: 50%;
+    margin-left: -$rollback;
+    position: relative;
+}
+@mixin respond-to($media) {
+    @if $media == handhelds {
+        @media only screen and (max-width: $break-small) { @content; }
+    }
+    @else if $media == tablets {
+        @media only screen and (min-width: $break-small) { @content; }
+    }
+}
+
+// Assets
+%clear {
+    float: left;
+    width: 100%;
+}
+%center {
+    width: 940px;
+    @include centralize(470px);
+}
+
+// Partials - System
+@import "system";

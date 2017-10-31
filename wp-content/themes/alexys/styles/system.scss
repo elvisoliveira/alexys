@@ -1,0 +1,10 @@
+// Partials - Topper
+div#messages-login {
+    @extend %clear;
+    background-color: #000;
+    p {
+        @extend %clear;
+        @extend %center;
+        background-color: #CCC;
+    }
+}

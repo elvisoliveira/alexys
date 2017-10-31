@@ -6,3 +6,30 @@
  * Description: Blog template converted to Wordpress.
  * Version: 0.0.2
  */
+@-ms-viewport {
+  width: device-width;
+}
+/* line 33, styles/styles.scss */
+div#messages-login, div#messages-login p {
+  float: left;
+  width: 100%;
+}
+
+/* line 37, styles/styles.scss */
+div#messages-login p {
+  width: 940px;
+  left: 50%;
+  margin-left: -470px;
+  position: relative;
+}
+
+/* line 2, styles/system.scss */
+div#messages-login {
+  background-color: #000;
+}
+/* line 5, styles/system.scss */
+div#messages-login p {
+  background-color: #CCC;
+}
+
+/*# sourceMappingURL=style.css.map */

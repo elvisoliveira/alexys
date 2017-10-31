@@ -6,36 +6,42 @@
         <meta charset="<?php bloginfo('charset'); ?>">
         <meta name="robots" content="index, follow" />
         <meta name="author" content="http://github.com/elvisoliveira" />
-        <meta name="keywords" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="" />
         <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
         <!-- WordPress Head -->
         <?php wp_head(); ?>
     </head>
     <body <?php body_class(); ?>>
+        <div class="topper">
+            <div class="center">
+                <div class="social">
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                    </ul>
+                </div>
+                <div class="search"><?php get_search_form(); ?></div>
+            </div>
+        </div>
         <div class="header">
             <?php get_header(); ?>
         </div>
         <div class="content">
-            <div class="inner">
-                <?php if (have_posts()): ?>
-                    <div class="page">
-                        <?php while (have_posts()): ?>
-                            <?php the_post(); ?>
-                            <div class="content-title"><?php the_title(); ?><hr /></div>
-                            <div class="content-desc"><?php the_content(); ?></div>
-                        <?php endwhile; ?>
-                    </div>
-                <?php else: ?>
-                    <p>Sorry, this page does not exist.</p>
-                <?php endif; ?>
-            </div>
+            <?php if (have_posts()): ?>
+                <div class="page">
+                    <?php while (have_posts()): ?>
+                        <?php the_post(); ?>
+                        <div class="content-title"><?php the_title(); ?><hr /></div>
+                        <div class="content-desc"><?php the_content(); ?></div>
+                    <?php endwhile; ?>
+                </div>
+            <?php else: ?>
+                <p>Sorry, this page does not exist.</p>
+            <?php endif; ?>
         </div>
         <div class="footer">
-            <div class="inner">
-                <?php get_footer(); ?>
-            </div>
+            <?php get_footer(); ?>
         </div>
         <?php wp_footer(); ?>
     </body>
