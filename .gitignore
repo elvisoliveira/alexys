@@ -25,3 +25,5 @@
 !/wp-content/themes/alexys/styles/*
 
 /wp-content/themes/alexys/*.log
+/**/*.log
+/**/*.css.map
