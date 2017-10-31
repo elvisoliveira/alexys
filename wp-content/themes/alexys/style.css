@@ -6,17 +6,23 @@
  * Description: Blog template converted to Wordpress.
  * Version: 0.0.2
  */
+/* line 10, styles/styles.scss */
+* {
+  margin: 0;
+  padding: 0;
+}
+
 @-ms-viewport {
   width: device-width;
 }
-/* line 33, styles/styles.scss */
-div#messages-login, div#messages-login p {
+/* line 35, styles/styles.scss */
+div.topper, div.topper div.center {
   float: left;
   width: 100%;
 }
 
-/* line 37, styles/styles.scss */
-div#messages-login p {
+/* line 39, styles/styles.scss */
+div.topper div.center {
   width: 940px;
   left: 50%;
   margin-left: -470px;
@@ -24,11 +30,11 @@ div#messages-login p {
 }
 
 /* line 2, styles/system.scss */
-div#messages-login {
+div.topper {
   background-color: #000;
 }
 /* line 5, styles/system.scss */
-div#messages-login p {
+div.topper div.center {
   background-color: #CCC;
 }
 
