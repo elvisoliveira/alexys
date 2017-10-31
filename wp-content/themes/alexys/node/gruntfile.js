@@ -15,8 +15,49 @@ module.exports = function(grunt) {
                         dest: './../assets/jquery-cycle/'
                     }
                 ]
-            }]
+        }],
+        sass: {
+            dist: {
+                options: {
+                    style: 'expanded',
+                    sourcemap: 'file',
+                    lineNumbers: true
+                },
+                files: {
+                    '../style.css': '../styles/styles.scss'
+                }
+            }
+        },
+        postcss: {
+            options: {
+                map: true,
+                processors: [
+                    require('cssnano')()
+                ]
+            },
+            dist: {
+                src: '../style.css'
+            }
+        },
+        watch: {
+            options: {
+                spawn: false,
+                livereload: true
+            },
+            sass: {
+                files: [
+                    '../styles/*.scss'
+                ],
+                tasks: ['sass', 'postcss']
+            }
+        }
     });
+
+    grunt.loadNpmTasks('grunt-postcss');
+    grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.registerTask('default', ['copy']);
+    grunt.loadNpmTasks('grunt-contrib-watch');
+
+    grunt.registerTask('default', ['copy', 'sass', 'postcss']);
+    grunt.registerTask('develop', ['copy', 'sass', 'postcss', 'watch']);
 };

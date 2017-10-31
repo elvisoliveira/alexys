@@ -1,22 +1,30 @@
 {
-    "name": "alexys",
-    "version": "1.0.0",
-    "description": "",
-    "author": "Elvis Oliveira <elvis.olv@gmail.com>",
-    "license": "MIT",
-    "devDependencies": {
-        "grunt": "^1.0.1",
-        "grunt-contrib-copy": "^1.0.0"
-    },
-    "dependencies": {
-        "jquery": "^1.12.4",
-        "jquery-cycle": "^3.0.3"
-    },
-    "scripts": {
-        "assets": "npm update --no-bin-links && grunt"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/elvisoliveira/alexys.git"
-    }
+  "name": "alexys",
+  "version": "1.0.0",
+  "description": "Ecommerce made with WooCommerce.",
+  "author": "Elvis Oliveira <elvis.olv@gmail.com>",
+  "license": "MIT",
+  "readme": "README.md",
+  "devDependencies": {
+    "cssnano": "^3.10.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-postcss": "^0.9.0"
+  },
+  "dependencies": {
+    "jquery": "^1.12.4",
+    "jquery-cycle": "^3.0.3"
+  },
+  "scripts": {
+    "setup": "grunt",
+    "asset": "npm update --no-bin-links && grunt",
+    "devel": "npm update --no-bin-links && grunt develop"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/elvisoliveira/alexys.git"
+  }
 }
