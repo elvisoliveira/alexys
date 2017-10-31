@@ -215,34 +215,35 @@ wp --allow-root theme activate alexys
 # Delete default post.
 wp site empty --yes --allow-root
 
-# Page: Home
-wp post create "./.docker/wordpress/post-content.txt" --allow-root \
-                                                      --post_type='page' \
-                                                      --post_status='publish' \
-                                                      --post_title='Home'
+# Pages: Static
+declare -a page_slug=("home" "brand" "blog" "faq")
+declare -a page_name=("Home" "Nossa Marca" "Blog" "Dúvidas Frequentes")
 
-declare -a page_slug=("cart" "myaccount" "checkout" "shop" 
-                      "terms" "brand" "blog")
-declare -a page_name=("Carrinho" "Minha conta" "Finalizar compra"
-                      "Shop" "Termos e Condições" "Nossa Marca" "Blog")
-
-# Pages
 for ((i=0;i<${#page_slug[@]};i++)); do
+  wp post create "./.docker/wordpress/post-content.txt" --allow-root \
+                                                        --post_type='page' \
+                                                        --post_status='publish' \
+                                                        --post_name="${page_slug[$i]}" \
+                                                        --post_title="${page_name[$i]}"
+done
 
-    if [ ! -f "./.docker/wordpress/page-${page_slug[$i]}.txt" ]; then
-        cp "./.docker/wordpress/post-content.txt" "./.docker/wordpress/page-${page_slug[$i]}.txt"
-    fi
+# Pages: WooCommerce
+declare -a woo_slug=("cart" "myaccount" "checkout" "shop" "terms")
+declare -a woo_name=("Carrinho" "Minha conta" "Finalizar compra" "Shop" "Termos e Condições")
 
-    wp post create "./.docker/wordpress/page-${page_slug[$i]}.txt" --allow-root \
-                                                                   --post_type='page' \
-                                                                   --post_status='publish' \
-                                                                   --post_title="${page_name[$i]}"
+for ((i=0;i<${#woo_slug[@]};i++)); do
+
+    wp post create "./.docker/wordpress/page-${woo_slug[$i]}.txt" --allow-root \
+                                                                  --post_type='page' \
+                                                                  --post_status='publish' \
+                                                                  --post_name="${woo_slug[$i]}" \
+                                                                  --post_title="${woo_name[$i]}"
 
     WP_PAGE=$(wp --allow-root db query "SELECT ID 
                                           FROM wp_posts 
-                                         WHERE post_title = \"${page_name[$i]}\"" | paste -s -d',' | sed "s/^ID,//")
+                                         WHERE post_title = \"${woo_name[$i]}\"" | paste -s -d',' | sed "s/^ID,//")
 
-    if [ "${page_name[$i]}" == "Shop" ]; then
+    if [ "${woo_name[$i]}" == "Shop" ]; then
         # Set default page to Shop
         wp option update --allow-root show_on_front page
         wp option update --allow-root page_on_front ${WP_PAGE}
@@ -250,7 +251,7 @@ for ((i=0;i<${#page_slug[@]};i++)); do
 
     wp db query --allow-root "UPDATE wp_options 
                                  SET option_value='${WP_PAGE}'
-                               WHERE option_name='woocommerce_${page_slug[$i]}_page_id'"
+                               WHERE option_name='woocommerce_${woo_slug[$i]}_page_id'"
 done
 
 # Slugfy
