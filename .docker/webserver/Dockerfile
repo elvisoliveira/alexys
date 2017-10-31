@@ -7,7 +7,7 @@ WORKDIR /var/www/alexys
 # Enviroment Dependencies:
 # Composer requires zip and git. (https://getcomposer.org/doc/00-intro.md#system-requirements)
 RUN apt-get update && \
-    apt-get install git unzip npm mysql-client libpng-dev libjpeg-dev -y && \
+    apt-get install git unzip npm mysql-client libpng-dev libjpeg-dev ruby ruby-dev -y && \
     docker-php-ext-install mysqli
 
 # Composer
@@ -28,6 +28,9 @@ RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 # Node.js 
 RUN npm install -g yarn grunt grunt-cli
+
+# Ruby Extensions
+RUN gem install sass
 
 # PHP / Apache Conf.
 COPY ./.docker/webserver/php.ini ${PHP_INI_DIR}/php.ini
