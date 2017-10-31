@@ -6,17 +6,6 @@
 #                  Set the info from the payment gateway. (PagSeguro)
 ################################################################################
 
-# Node.js resources
-read -p "Execute NPM? y/n [n] " npm
-
-while [[ -z "$npm" ]]; do
-    npm="n"
-done
-
-if [ "$npm" == "y" ]; then
-    (cd ./wp-content/themes/alexys/node && npm run assets)
-fi
-
 # WordPress Install ############################################################
 ################################################################################
 
@@ -351,4 +340,17 @@ if [ "$img" == "y" ]; then
                                                           $WP_POST
     done
 
+fi
+
+# Node.js resources ############################################################
+################################################################################
+
+read -p "Execute NPM? y/n [n] " npm
+
+while [[ -z "$npm" ]]; do
+    npm="n"
+done
+
+if [ "$npm" == "y" ]; then
+    (cd ./wp-content/themes/alexys/node && npm run devel)
 fi
