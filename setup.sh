@@ -143,52 +143,31 @@ wp --allow-root eval "update_option('woocommerce_paypal_settings', array('enable
 wp --allow-root eval "update_option('woocommerce_pagseguro_settings',
                                     array('sandbox_email' => '$admin_email', /* ----- Pagseguro ---- */
                                           'sandbox_token' => '$pagseguro_token', /* ----- Pagseguro ---- */
-                                          'debug' => 'no',
-                                          'title' => 'PagSeguro',
-                                          'method' => 'lightbox',
-                                          'sandbox' => 'yes',
-                                          'enabled' => 'yes',
-                                          'tc_credit' => 'yes',
-                                          'tc_ticket' => 'yes',
-                                          'tc_transfer' => 'yes',
-                                          'description' => 'Pay via PagSeguro',
-                                          'invoice_prefix' => 'WC-',
-                                          'send_only_total' => 'no',
-                                          'tc_ticket_message' => 'yes')
+                                          'debug' => 'no', 'title' => 'PagSeguro', 'method' => 'lightbox',
+                                          'sandbox' => 'yes', 'enabled' => 'yes', 'tc_credit' => 'yes',
+                                          'tc_ticket' => 'yes', 'tc_transfer' => 'yes',
+                                          'description' => 'Pay via PagSeguro', 'invoice_prefix' => 'WC-',
+                                          'send_only_total' => 'no', 'tc_ticket_message' => 'yes')
                                    );"
 
 ## WooCommerce Correios: Enable Submission Methods
 wp --allow-root eval "update_option('woocommerce_correios-pac_1_settings',
-                                    array('debug' => 'no',
-                                          'title' => 'PAC',
-                                          'enabled' => 'yes',
-                                          'own_hands' => 'no',
-                                          'service_type' => 'conventional',
-                                          'extra_weight' => '0',
-                                          'declare_value' => 'yes',
-                                          'minimum_width' => '11',
-                                          'receipt_notice' => 'no',
-                                          'minimum_height' => '2',
-                                          'minimum_length' => '16',
-                                          'origin_postcode' => '29100-330',
-                                          'additional_time' => '2',
+                                    array('debug' => 'no', 'title' => 'PAC', 'enabled' => 'yes',
+                                          'own_hands' => 'no', 'service_type' => 'conventional',
+                                          'extra_weight' => '0', 'declare_value' => 'yes',
+                                          'minimum_width' => '11', 'receipt_notice' => 'no',
+                                          'minimum_height' => '2', 'minimum_length' => '16',
+                                          'origin_postcode' => '29100-330', 'additional_time' => '2',
                                           'show_delivery_time' => 'yes')
                                     );"
 
 wp --allow-root eval "update_option('woocommerce_correios-sedex_2_settings',
-                                    array('debug' => 'no',
-                                          'title' => 'SEDEX',
-                                          'enabled' => 'yes',
-                                          'own_hands' => 'no',
-                                          'service_type' => 'conventional',
-                                          'extra_weight' => '0',
-                                          'minimum_width' => '11',
-                                          'declare_value' => 'yes',
-                                          'minimum_length' => '16',
-                                          'minimum_height' => '2',
-                                          'receipt_notice' => 'no',
-                                          'additional_time' => '2',
-                                          'origin_postcode' => '29100-330',
+                                    array('debug' => 'no', 'title' => 'SEDEX', 'enabled' => 'yes',
+                                          'own_hands' => 'no', 'service_type' => 'conventional',
+                                          'extra_weight' => '0', 'minimum_width' => '11',
+                                          'declare_value' => 'yes', 'minimum_length' => '16',
+                                          'minimum_height' => '2', 'receipt_notice' => 'no',
+                                          'additional_time' => '2', 'origin_postcode' => '29100-330',
                                           'show_delivery_time' => 'yes')
                                     );"
 

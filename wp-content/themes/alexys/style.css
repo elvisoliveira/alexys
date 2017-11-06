@@ -6,36 +6,184 @@
  * Description: Blog template converted to Wordpress.
  * Version: 0.0.2
  */
-/* line 10, styles/styles.scss */
 * {
   margin: 0;
   padding: 0;
+  font-family: Arial;
 }
 
 @-ms-viewport {
   width: device-width;
 }
-/* line 35, styles/styles.scss */
-div.topper, div.topper div.center {
+div.topper, div.topper div.center, div.header, div.header div.center, div.header div.center div.menu > div, div.search form, div.search form div, div.content, div.content div.center, div.footer, div.footer div.center, div.footer div.center div.over, div.footer div.center div.over dl.info ul li, div.footer div.center div.under {
   float: left;
   width: 100%;
 }
 
-/* line 39, styles/styles.scss */
-div.topper div.center {
+div.topper div.center, div.header div.center, div.content div.center, div.footer div.center {
   width: 940px;
   left: 50%;
   margin-left: -470px;
   position: relative;
 }
 
-/* line 2, styles/system.scss */
 div.topper {
   background-color: #000;
 }
-/* line 5, styles/system.scss */
-div.topper div.center {
-  background-color: #CCC;
+
+div.social {
+  float: left;
+  margin-top: 5px;
+}
+div.social ul {
+  float: left;
+}
+div.social ul li {
+  float: left;
+  color: #FFF;
+  margin: 0 15px;
+  font-size: 12px;
+  list-style: none;
+}
+
+div.header {
+  height: 128px;
+  background-color: #F4F4F4;
+}
+div.header div.center div.brand {
+  float: left;
+  margin-top: 25px;
+}
+div.header div.center div.brand img {
+  float: left;
+}
+div.header div.center div.menu {
+  float: right;
+  width: 500px;
+  margin: 39px 0;
+}
+div.header div.center div.menu ul {
+  float: right;
+}
+div.header div.center div.menu ul li {
+  float: left;
+  list-style: none;
+  padding: 0 15px;
+}
+div.header div.center div.menu ul li a {
+  text-decoration: none;
+  font-family: Arial;
+  float: left;
+}
+div.header div.center div.menu div.header-top {
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 11px;
+}
+div.header div.center div.menu div.header-top a {
+  text-transform: uppercase;
+  line-height: 13px;
+  font-weight: bold;
+  font-size: 13px;
+  color: #000;
+}
+div.header div.center div.menu div.header-sub {
+  padding-top: 11px;
+}
+div.header div.center div.menu div.header-sub a {
+  line-height: 14px;
+  font-size: 14px;
+  color: #777777;
+}
+
+div.search {
+  float: right;
+}
+div.search form div input#s {
+  border: 0;
+  height: 22px;
+  margin: 4px 0;
+}
+div.search form div input#searchsubmit {
+  color: #FFF;
+  border: 0;
+  height: 22px;
+  background-color: transparent;
+}
+
+div.footer {
+  background-color: #000;
+}
+div.footer div.center div.over {
+  margin-top: 35px;
+}
+div.footer div.center div.over dl {
+  width: 25%;
+  float: left;
+}
+div.footer div.center div.over dl dt {
+  color: #FFF;
+  font-size: 13px;
+  padding-bottom: 15px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #3D3D3D;
+}
+div.footer div.center div.over dl dd {
+  float: left;
+  margin-top: 20px;
+}
+div.footer div.center div.over dl dd ul {
+  float: left;
+}
+div.footer div.center div.over dl.info ul {
+  width: 50%;
+}
+div.footer div.center div.over dl.info ul li {
+  float: left;
+  line-height: 15px;
+  margin-bottom: 10px;
+}
+div.footer div.center div.over dl.info ul li a {
+  float: left;
+  color: #FFF;
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+div.footer div.center div.over dl.tags dd li {
+  margin: 0 2px 2px 0;
+  float: left;
+  height: 11px;
+  list-style: none;
+  padding: 7px 11px;
+  border: 1px solid #3D3D3D;
+}
+div.footer div.center div.over dl.tags dd li a {
+  color: #FFF;
+  font-size: 11px;
+  line-height: 13px;
+  text-transform: uppercase;
+  text-decoration: none;
+  float: left;
+}
+div.footer div.center div.under {
+  border-top: 2px solid #3D3D3D;
+}
+div.footer div.center div.under div.credit-card ul {
+  float: left;
+}
+div.footer div.center div.under div.credit-card ul li {
+  float: left;
+  list-style: none;
+}
+div.footer div.center div.under div.credit-card ul li a {
+  float: left;
+}
+div.footer div.center div.under div.credits {
+  float: right;
+}
+div.footer div.center div.under div.credits a {
+  color: #FFF;
 }
 
 /*# sourceMappingURL=style.css.map */

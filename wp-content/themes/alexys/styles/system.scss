@@ -5,6 +5,208 @@ div.topper {
     div.center {
         @extend %clear;
         @extend %center;
-        background-color: #CCC;
+    }
+}
+
+// Social Links
+div.social {
+    float: left;
+    margin-top: 5px;
+    ul {
+        float: left;
+        li {
+            float: left;
+            color: #FFF;
+            margin: 0 15px;
+            font-size: 12px;
+            list-style: none;
+        }
+    }
+}
+
+// Header
+div.header {
+    @extend %clear;
+    height: 128px;
+    background-color: #F4F4F4;
+    div.center {
+        @extend %clear;
+        @extend %center;
+        div.brand {
+            float: left;
+            margin-top: 25px;
+            img { float: left; }
+        }
+        div.menu {
+            float: right;
+            width: 500px;
+            margin: 39px 0;
+            > div {
+                @extend %clear;
+            }
+            ul {
+                float: right;
+                li {
+                    float: left;
+                    list-style: none;
+                    padding: 0 15px;
+                    a {
+                        text-decoration: none;
+                        font-family: Arial;
+                        float: left;
+                    }
+                }
+            }
+            div.header-top {
+                border-bottom: 1px solid #CCC;
+                padding-bottom: 11px;
+                a {
+                    text-transform: uppercase;
+                    line-height: 13px;
+                    font-weight: bold;
+                    font-size: 13px;
+                    color: #000;
+                }
+            }
+            div.header-sub {
+                padding-top: 11px;
+                a {
+                    line-height: 14px;
+                    font-size: 14px;
+                    color: #777777;
+                }
+            }
+        }
+    }
+}
+
+// Search form
+div.search {
+    float: right;
+    form {
+        @extend %clear;
+        div {
+            @extend %clear;
+            input#s {
+                border: 0;
+                height: 22px;
+                margin: 4px 0;
+            }
+            input#searchsubmit {
+                color: #FFF;
+                border: 0;
+                height: 22px;
+                background-color: transparent;
+            }
+        }
+    }
+}
+
+// Content
+div.content {
+    @extend %clear;
+    div.center {
+        @extend %clear;
+        @extend %center;
+    }
+}
+
+// Footer
+div.footer {
+    @extend %clear;
+    background-color: #000;
+    div.center {
+        @extend %clear;
+        @extend %center;
+        div.over {
+            @extend %clear;
+            margin-top: 35px;
+            dl {
+                width: 25%;
+                float: left;
+                dt {
+                    color: #FFF;
+                    font-size: 13px;
+                    padding-bottom: 15px;
+                    text-transform: uppercase;
+                    border-bottom: 2px solid #3D3D3D;
+                }
+                dd {
+                    float: left;
+                    margin-top: 20px;
+                     ul {
+                        float: left;
+                        li {
+                            a {
+
+                            }
+                        }
+                     }
+                }
+            }
+            dl.info {
+                ul {
+                    width: 50%;
+                    li {
+                        @extend %clear;
+                        float: left;
+                        line-height: 15px;
+                        margin-bottom: 10px;
+                        a {
+                            float: left;
+                            color: #FFF;
+                            font-size: 12px;
+                            line-height: 15px;
+                            text-transform: uppercase;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+            dl.blog {}
+            dl.snet {}
+            dl.tags {
+                dd {
+                    li {
+                        margin: 0 2px 2px 0;
+                        float: left;
+                        height: 11px;
+                        list-style: none;
+                        padding: 7px 11px;
+                        border: 1px solid #3D3D3D;
+                        a {
+                            color: #FFF;
+                            font-size: 11px;
+                            line-height: 13px;
+                            text-transform: uppercase;
+                            text-decoration: none;
+                            float: left;
+                        }
+                    }
+                }
+            }
+        }
+        div.under {
+            @extend %clear;
+            border-top: 2px solid #3D3D3D;
+            div.credit-card {
+                ul {
+                    float: left;
+                    li {
+                        float: left;
+                        list-style: none;
+                        a {
+                            float: left;
+                        }
+                    }
+                }
+            }
+            div.credits {
+                float: right;
+                a {
+                    color: #FFF;
+                }
+            }
+        }
     }
 }

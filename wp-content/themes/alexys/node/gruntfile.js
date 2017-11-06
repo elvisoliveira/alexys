@@ -21,7 +21,7 @@ module.exports = function(grunt) {
                 options: {
                     style: 'expanded',
                     sourcemap: 'file',
-                    lineNumbers: true
+                    lineNumbers: false
                 },
                 files: {
                     '../style.css': '../styles/styles.scss'

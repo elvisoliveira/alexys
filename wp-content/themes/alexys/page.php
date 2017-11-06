@@ -26,10 +26,13 @@
             </div>
         </div>
         <div class="header">
-            <?php get_header(); ?>
+            <div class="center">
+                <?php get_header(); ?>
+            </div>
         </div>
         <div class="content">
-            <?php if (have_posts()): ?>
+            <div class="center">
+                <?php if (have_posts()): ?>
                 <div class="page">
                     <?php while (have_posts()): ?>
                         <?php the_post(); ?>
@@ -37,9 +40,10 @@
                         <div class="content-desc"><?php the_content(); ?></div>
                     <?php endwhile; ?>
                 </div>
-            <?php else: ?>
+                <?php else: ?>
                 <p>Sorry, this page does not exist.</p>
-            <?php endif; ?>
+                <?php endif; ?>
+            </div>
         </div>
         <div class="footer">
             <?php get_footer(); ?>
