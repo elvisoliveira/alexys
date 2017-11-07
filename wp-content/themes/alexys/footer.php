@@ -59,10 +59,10 @@
     <div class="under">
         <div class="credit-card">
             <ul>
-                <li><a href="#">Visa</a></li>
-                <li><a href="#">PayPal</a></li>
-                <li><a href="#">MasterCard</a></li>
-                <li><a href="#">Discobery</a></li>
+                <li class="visa"><a href="#">Visa</a></li>
+                <li class="paypal"><a href="#">PayPal</a></li>
+                <li class="mastercard"><a href="#">MasterCard</a></li>
+                <li class="discobery"><a href="#">Discobery</a></li>
             </ul>
         </div>
         <div class="credits">

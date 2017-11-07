@@ -23,8 +23,8 @@
 !/wp-content/themes/alexys/scripts/*
 !/wp-content/themes/alexys/styles
 !/wp-content/themes/alexys/styles/*
-# Ignore Sass generated file.
-wp-content/themes/alexys/style.css
+!/wp-content/themes/alexys/images
+!/wp-content/themes/alexys/images/*
 
 /wp-content/themes/alexys/*.log
 /**/*.log

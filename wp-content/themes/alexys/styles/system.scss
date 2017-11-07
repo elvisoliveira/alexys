@@ -16,11 +16,22 @@ div.social {
         float: left;
         li {
             float: left;
+            width: 20px;
             color: #FFF;
             margin: 0 15px;
             font-size: 12px;
             list-style: none;
+            background-image: url('images/socialnetwork.gif');
+            a {
+                @extend %clear;
+                height: 20px;
+                text-indent: -3000em;
+            }
         }
+        > .twitter { background-position: -94px -8px; }
+        > .facebook {background-position: -8px -7px; }
+        > .pinterest { background-position: -51px -8px;  }
+        > .instagram { background-position: -137px -8px; }
     }
 }
 
@@ -122,17 +133,20 @@ div.footer {
             @extend %clear;
             margin-top: 35px;
             dl {
-                width: 25%;
+                width: 23%;
                 float: left;
+                margin-left: 1%;
+                margin-right: 1%;
                 dt {
                     color: #FFF;
                     font-size: 13px;
+                    font-weight: bold;
                     padding-bottom: 15px;
                     text-transform: uppercase;
                     border-bottom: 2px solid #3D3D3D;
                 }
                 dd {
-                    float: left;
+                    @extend %clear;
                     margin-top: 20px;
                      ul {
                         float: left;
@@ -163,7 +177,32 @@ div.footer {
                     }
                 }
             }
-            dl.blog {}
+            dl.blog {
+                ul {
+                    @extend %clear;
+                    li {
+                        @extend %clear;
+                        div.date {
+                            width: 15%;
+                            float: left;
+                            color: #FFF;
+                            font-size: 15px;
+                            text-align: center;
+                            background-color: #B39964;
+                            span {
+                                @extend %clear;
+                                font-size: 11px;
+                            }
+                        }
+                        div.title {
+                            width: 80%;
+                            color: #FFF;
+                            float: right;
+                            font-size: 13px;
+                        }
+                    }
+                }
+            }
             dl.snet {}
             dl.tags {
                 dd {
@@ -188,17 +227,28 @@ div.footer {
         }
         div.under {
             @extend %clear;
+            margin-top: 50px;
             border-top: 2px solid #3D3D3D;
             div.credit-card {
                 ul {
                     float: left;
+                    padding: 30px 0;
                     li {
                         float: left;
                         list-style: none;
+                        margin-right: 8px;
+                        background-image: url('images/creditcards.gif');
                         a {
                             float: left;
+                            width: 48px;
+                            height: 30px;
+                            text-indent: -300em;
                         }
                     }
+                    > .visa { background-position: 0; }
+                    > .paypal { background-position: -48px 0; }
+                    > .discobery { background-position: -144px 0; }
+                    > .mastercard { background-position: -96px 0; }
                 }
             }
             div.credits {

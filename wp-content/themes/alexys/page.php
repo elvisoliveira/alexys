@@ -17,9 +17,10 @@
             <div class="center">
                 <div class="social">
                     <ul>
-                        <li>Facebook</li>
-                        <li>Twitter</li>
-                        <li>Instagram</li>
+                        <li class="twitter"><a href="#">Twitter</a></li>
+                        <li class="facebook"><a href="#">Facebook</a></li>
+                        <li class="pinterest"><a href="#">Pinterest</a></li>
+                        <li class="instagram"><a href="#">Instagram</a></li>
                     </ul>
                 </div>
                 <div class="search"><?php get_search_form(); ?></div>
