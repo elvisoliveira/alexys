@@ -28,10 +28,10 @@ div.social {
                 text-indent: -3000em;
             }
         }
-        > .twitter { background-position: -94px -8px; }
-        > .facebook {background-position: -8px -7px; }
-        > .pinterest { background-position: -51px -8px;  }
-        > .instagram { background-position: -137px -8px; }
+        > .twitter { background-position: -78px 0px; }
+        > .facebook {background-position: -7px 0px; }
+        > .pinterest { background-position: -43px 0px;  }
+        > .instagram { background-position: -114px 0px; }
     }
 }
 
@@ -186,6 +186,7 @@ div.footer {
                             width: 15%;
                             float: left;
                             color: #FFF;
+                            padding: 2px 0;
                             font-size: 15px;
                             text-align: center;
                             background-color: #B39964;
@@ -203,7 +204,28 @@ div.footer {
                     }
                 }
             }
-            dl.snet {}
+            dl.snet {
+                float: left;
+                ul {
+                    float: left;
+                    li {
+                        float: left;
+                        width: 35px;
+                        margin: 0 5px;
+                        list-style: none;
+                        a {
+                            @extend %clear;
+                            height: 35px;
+                            text-indent: -3000em;
+                            background-image: url('images/socialnetwork.gif');
+                        }
+                    }
+                    > .twitter a { background-position: -70px -27px; }
+                    > .facebook a {background-position: 0px -27px; }
+                    > .pinterest a { background-position: -35px -27px;  }
+                    > .instagram a { background-position: -105px -27px; }
+                }
+            }
             dl.tags {
                 dd {
                     li {
@@ -227,12 +249,13 @@ div.footer {
         }
         div.under {
             @extend %clear;
+            padding: 30px 0;
             margin-top: 50px;
             border-top: 2px solid #3D3D3D;
             div.credit-card {
+                float: left;
                 ul {
                     float: left;
-                    padding: 30px 0;
                     li {
                         float: left;
                         list-style: none;
@@ -254,7 +277,9 @@ div.footer {
             div.credits {
                 float: right;
                 a {
-                    color: #FFF;
+                    img {
+                        float: left;
+                    }
                 }
             }
         }

@@ -66,7 +66,9 @@
             </ul>
         </div>
         <div class="credits">
-            <a href="http://oxdigital.com.br/">OX Digital</a>
+            <a href="http://oxdigital.com.br/">
+                <img alt="OX Digital" src="<?php echo get_template_directory_uri(); ?>/images/oxdigital.gif" />
+            </a>
         </div>
     </div>
 </div>
