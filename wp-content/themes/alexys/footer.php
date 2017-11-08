@@ -18,12 +18,17 @@
         <dl class="blog">
             <dt>Blog</dt>
             <dd>
+                <?php $custom_query = new WP_Query(array('post_type' => 'post', 'posts_per_page' => 4)); ?>
                 <ul>
-                    <li>
-                        <div class="date">08<span class="month">SET</span></div>
-                        <div class="title">Best Street Style Looks From New York Fashion Week Spring 2018</div>
+                    <?php while($custom_query->have_posts()): $custom_query->the_post(); ?>
+                    <li <?php post_class(); ?> id="post-<?php the_ID(); ?>">
+                        <div class="date"><?php print get_the_date('d'); ?><span class="month"><?php print substr(get_the_date('F'), 0, 3); ?></span></div>
+                        <div class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></div>
+                        <?php // the_content(); ?>
                     </li>
+                    <?php endwhile; ?>
                 </ul>
+                <?php wp_reset_postdata(); ?>
             </dd>
         </dl>
         <dl class="tags">

@@ -28,8 +28,8 @@ div.social {
                 text-indent: -3000em;
             }
         }
-        > .twitter { background-position: -78px 0px; }
         > .facebook {background-position: -7px 0px; }
+        > .twitter { background-position: -78px 0px; }
         > .pinterest { background-position: -43px 0px;  }
         > .instagram { background-position: -114px 0px; }
     }
@@ -182,24 +182,29 @@ div.footer {
                     @extend %clear;
                     li {
                         @extend %clear;
+                        margin-bottom: 15px;
                         div.date {
                             width: 15%;
                             float: left;
                             color: #FFF;
                             padding: 2px 0;
-                            font-size: 15px;
+                            font-size: 16px;
                             text-align: center;
                             background-color: #B39964;
                             span {
                                 @extend %clear;
-                                font-size: 11px;
+                                font-size: 9px;
+                                text-transform: uppercase;
                             }
                         }
                         div.title {
                             width: 80%;
-                            color: #FFF;
                             float: right;
-                            font-size: 13px;
+                            a {
+                                color: #FFF;
+                                font-size: 15px;
+                                text-decoration: none;
+                            }
                         }
                     }
                 }
@@ -276,7 +281,10 @@ div.footer {
             }
             div.credits {
                 float: right;
+                height: 30px;
                 a {
+                    float: left;
+                    margin-top: 4px;
                     img {
                         float: left;
                     }
