@@ -125,6 +125,7 @@ div.content {
 // Footer
 div.footer {
     @extend %clear;
+    margin-top: 25px;
     background-color: #000;
     div.center {
         @extend %clear;
@@ -289,6 +290,42 @@ div.footer {
                         float: left;
                     }
                 }
+            }
+        }
+    }
+}
+
+// Content
+div.page {
+    @extend %clear;
+    margin-top: 50px;
+    .content-title {
+        @extend %clear;
+        font-size: 40px;
+        text-align: center;
+        hr {
+            @extend %clear;
+            margin: 15px 0;
+            border: 0.5px dashed black;
+        }
+    }
+    .content-desc {
+        @extend %clear;
+        font-size: 13px;
+        margin-top: 5px;
+        line-height: 20px;
+        p {
+            margin-bottom: 10px;
+        }
+        h2 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        ul {
+            margin-bottom: 10px;
+            list-style-position: inside;
+            li {
+
             }
         }
     }

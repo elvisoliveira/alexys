@@ -1,51 +1,41 @@
 A Alexys oferece aos seus consumidores peças com design sofisticado, acabamentos diferenciados, desenvolvidas de acordo com as últimas tendências de moda e se preocupa com a satisfação de todos os seus clientes. Por este motivo, desenvolvemos a presente Política de Trocas e Devoluções para seus revendedores.
-
-RECEBIMENTO DE MERCADORIAS EM EMBALAGEM COM INDÍCIOS DE VIOLAÇÃO:
-
+<h2>RECEBIMENTO DE MERCADORIAS EM EMBALAGEM COM INDÍCIOS DE VIOLAÇÃO:</h2>
 Mercadorias com sinal de violação devem ser recusadas ou conferidas na presença do agente da transportadora.
-
-SOLICITAÇÃO DE TROCA E DEVOLUÇÃO:
-
+<h2>SOLICITAÇÃO DE TROCA E DEVOLUÇÃO:</h2>
 Os produtos Alexys são classificados pelo Código de Defesa do Consumidor como duráveis. Sendo assim, no caso de vícios aparentes o prazo para reclamação seria de 30 dias a partir do recebimento da mercadoria. Contudo, a Alexys estende este prazo da seguinte forma:
-
-• Revendedores: 180 dias a partir do recebimento para reclamação de produtos com vícios aparentes.
-• Consumidores: 90 dias a partir da compra para reclamação por vícios aparentes e 90 dias para os casos de vícios ocultos (que surgem após o uso). Havendo casos de consumidores que fogem a esta regra, pedimos que a loja oriente o mesmo a entrar em contato com nosso serviço de atendimento ao consumidor, através do site www.lancaperfume.com.br ou fone 0800 891 6599.
-
+<ul>
+    <li>Revendedores: 180 dias a partir do recebimento para reclamação de produtos com vícios aparentes.</li>
+    <li>Consumidores: 90 dias a partir da compra para reclamação por vícios aparentes e 90 dias para os casos de vícios ocultos (que surgem após o uso). Havendo casos de consumidores que fogem a esta regra, pedimos que a loja oriente o mesmo a entrar em contato com nosso serviço de atendimento ao consumidor, através do site www.lancaperfume.com.br ou fone 0800 891 6599.</li>
+</ul>
 Havendo o recebimento de algum produto com problemas, o revendedor deve contatar nossa equipe de CRM através do fone 0800 887 1551, que o instruirá sobre os procedimentos para envio do mesmo à fábrica.
 
 Os produtos devolvidos sem prévia comunicação serão imediatamente reenviados ao cliente. O mesmo ocorrerá para os casos em que houver divergência entre os itens constantes na reclamação registrada com o setor de CRM e os que são efetivamente enviados à fábrica.
-
-ANÁLISE DO PRODUTO DEVOLVIDO:
-
+<h2>ANÁLISE DO PRODUTO DEVOLVIDO:</h2>
 A Partir do envio do produto para a fábrica, este passará pela análise de nosso setor de Controle da Qualidade e a Alexys tem o prazo máximo de 30 (trinta) dias para a solução. Havendo consentimento expresso do cliente, este prazo poderá ser estendido por, no máximo, 180 dias.
-
-CONDIÇÃO DO PRODUTO PARA DEVOLUÇÃO OU TROCA:
-
+<h2>CONDIÇÃO DO PRODUTO PARA DEVOLUÇÃO OU TROCA:</h2>
 Somente serão aceitos em caso de troca e/ou devolução do revendedor:
-
-• Produtos com etiqueta devidamente afixada na peça;
-• Em caso de modelagem, obrigatoriamente o cliente deverá encaminhar fotos para comprovação;
-• Calçados, bolsas e acessórios em sua embalagem original;
-• Produtos não lavados e não utilizados, sem danos, manchas ou alterações no tecido ou nas suas características iniciais (ex.: bainha, ajuste de punho, etc.).
-
-DEVOLUÇÃO DE PRODUTO AO CLIENTE:
-
+<ul>
+    <li>Produtos com etiqueta devidamente afixada na peça;</li>
+    <li>Em caso de modelagem, obrigatoriamente o cliente deverá encaminhar fotos para comprovação;</li>
+    <li>Calçados, bolsas e acessórios em sua embalagem original;</li>
+    <li>Produtos não lavados e não utilizados, sem danos, manchas ou alterações no tecido ou nas suas características iniciais (ex.: bainha, ajuste de punho, etc.).</li>
+</ul>
+<h2>DEVOLUÇÃO DE PRODUTO AO CLIENTE:</h2>
 O produto será devolvido para o Cliente sem direito a substituição, conserto ou indenização quando houver os seguintes itens de reprovação:
-
-• Ausência de defeito (não constatação do dano apontado pelo cliente);
-• Indícios de uso inadequado do produto;
-• Indícios de dano acidental ou provocado;
-• Desgaste natural em decorrência do uso;
-• Lavagem inadequada do produto.
-
+<ul>
+    <li>Ausência de defeito (não constatação do dano apontado pelo cliente);</li>
+    <li>Indícios de uso inadequado do produto;</li>
+    <li>Indícios de dano acidental ou provocado;</li>
+    <li>Desgaste natural em decorrência do uso;</li>
+    <li>Lavagem inadequada do produto.</li>
+</ul>
 Nestas condições, a Alexys devolverá o produto ao cliente, juntamente com um laudo técnico, sem prévio aviso.
-
-CONSTATAÇÃO DE DEFEITO:
-
+<h2>CONSTATAÇÃO DE DEFEITO:</h2>
 Em caso de constatação de defeito de fabricação, será enviado um novo produto ao cliente.
 
 Se não houver um novo produto em estoque, ou detectarmos que o vício percebido tende a se repetir em todas as unidades da mesma referência, o cliente tem as seguintes opções de ressarcimento:
-
-• Cupom de crédito para compra em nosso site LPB2B;
-• Abatimentos em duplicatas a vencer
-• Devolução do valor em conta corrente, quando não existirem duplicatas em aberto.
+<ul>
+    <li>Cupom de crédito para compra em nosso site LPB2B;</li>
+    <li>Abatimentos em duplicatas a vencer</li>
+    <li>Devolução do valor em conta corrente, quando não existirem duplicatas em aberto.</li>
+</ul>
