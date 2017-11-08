@@ -205,6 +205,39 @@ for ((i=0;i<${#page_slug[@]};i++)); do
     fi
 done
 
+# Blog posts
+declare -a blog=("Best Street Style Looks From New York Fashion Week Spring 2018"
+                 "The Best Fashion Blogs to Follow in 2017"
+                 "What to Wear to Work in Autumn"
+                 "The Best of the Best Jeans for Fall and Where To Get Them"
+                 "The Dad Pants Are Back and We Couldn’t Be Happier"
+                 "The Ultimate Fall Boot to Go from Day to Night")
+
+WP_TEMP=$(mktemp -d)
+
+for ((i=0;i<${#blog[@]};i++)); do
+
+    # Temp location
+    WP_IMAG="${WP_TEMP}/${i}.jpg"
+
+    # Download 5 ramdom images 1000x1000
+    curl  -L -o ${WP_IMAG} 'https://picsum.photos/1000/1000/?random'
+
+    POST_ID=$(wp post create "./.docker/wordpress/post-content.txt" --porcelain \
+                                                                    --allow-root \
+                                                                    --post_status='publish' \
+                                                                    --post_title="${blog[$i]}")
+
+    THMB_ID=$(wp media import --porcelain \
+                              --allow-root \
+                              --post_id=${POST_ID} \
+                              --alt="${blog[$i]}" \
+                              --title="${blog[$i]}" ${WP_IMAG})
+
+  wp post meta add ${POST_ID} _thumbnail_id ${THMB_ID} --allow-root
+
+done
+
 # Pages: WooCommerce
 declare -a woo_slug=("cart" "myaccount" "checkout" "shop" "terms")
 declare -a woo_name=("Carrinho" "Minha conta" "Finalizar compra" "Shop" "Termos e Condições")
