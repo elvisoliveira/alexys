@@ -35,11 +35,25 @@
             <div class="center">
                 <?php if (have_posts()): ?>
                 <div class="page">
-                    <?php while (have_posts()): ?>
-                        <?php the_post(); ?>
+
+<?php get_header('shop'); ?>
+<?php do_action('woocommerce_before_main_content'); ?>
+
+                    <?php while (have_posts()): the_post(); ?>
+
                         <div class="content-title"><?php the_title(); ?><hr /></div>
                         <div class="content-desc"><?php the_content(); ?></div>
+
+<?php wc_get_template_part('content', 'single-product'); ?>
+
+
                     <?php endwhile; ?>
+
+<?php do_action('woocommerce_after_main_content'); ?>
+<?php do_action('woocommerce_sidebar'); ?>
+<?php get_footer('shop'); ?>
+
+
                 </div>
                 <?php else: ?>
                 <p>Sorry, this page does not exist.</p>
