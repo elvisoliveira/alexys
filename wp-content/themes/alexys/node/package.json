@@ -6,8 +6,10 @@
   "license": "MIT",
   "readme": "README.md",
   "devDependencies": {
-    "cssnano": "^3.10.0",
     "grunt": "^1.0.1",
+    "cssnano": "^3.10.0",
+    "autoprefixer": "^7.1.6",
+    "grunt-postcss": "^0.9.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",

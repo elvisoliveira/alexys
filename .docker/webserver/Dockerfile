@@ -6,8 +6,9 @@ WORKDIR /var/www/alexys
 
 # Enviroment Dependencies:
 # Composer requires zip and git. (https://getcomposer.org/doc/00-intro.md#system-requirements)
-RUN apt-get update && \
-    apt-get install git unzip npm mysql-client libpng-dev libjpeg-dev ruby ruby-dev -y && \
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
+    apt-get update && \
+    apt-get install git unzip build-essential nodejs mysql-client libpng-dev libjpeg-dev ruby ruby-dev -y && \
     docker-php-ext-install mysqli
 
 # Composer
@@ -24,7 +25,7 @@ RUN docker-php-ext-install mysqli gd
 
 # Some required Node.js packages expects 
 # nodejs command to be node.
-RUN ln -s /usr/bin/nodejs /usr/bin/node
+# RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 # Node.js 
 RUN npm install -g yarn grunt grunt-cli
