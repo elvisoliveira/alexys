@@ -171,6 +171,10 @@ wp --allow-root eval "update_option('woocommerce_correios-sedex_2_settings',
                                           'show_delivery_time' => 'yes')
                                     );"
 
+# Fix URLs
+wp --allow-root --format=json option update woocommerce_permalinks \
+   '{"category_base":"\/shop\/category","product_base":"\/shop","use_verbose_page_rules": true}'
+
 # Jetpack: Contact
 wp --allow-root jetpack module activate contact-form
 
