@@ -36,23 +36,27 @@
                 <?php if (have_posts()): ?>
                 <div class="page">
 
-<?php get_header('shop'); ?>
-<?php do_action('woocommerce_before_main_content'); ?>
+                    <?php // get_header('shop'); ?>
+                    <?php // do_action('woocommerce_before_main_content'); ?>
 
                     <?php while (have_posts()): the_post(); ?>
 
-                        <div class="content-title"><?php the_title(); ?><hr /></div>
-                        <div class="content-desc"><?php the_content(); ?></div>
-
-<?php wc_get_template_part('content', 'single-product'); ?>
-
+                        <?php if(in_array('single-product', get_body_class())): ?>
+                                <?php wc_get_template_part('content', 'single-product'); ?>
+                        <?php elseif(in_array('post-type-archive-product', get_body_class())): ?>
+                                <?php wc_get_template_part('content', 'product'); ?>
+                        <?php elseif(in_array('tax-product_cat', get_body_class())): ?>
+                                <?php wc_get_template_part('content', 'product'); ?>
+                        <?php else: ?>
+                            <div class="content-title"><?php the_title(); ?><hr /></div>
+                            <div class="content-desc"><?php the_content(); ?></div>
+                        <?php endif; ?>
 
                     <?php endwhile; ?>
 
-<?php do_action('woocommerce_after_main_content'); ?>
-<?php do_action('woocommerce_sidebar'); ?>
-<?php get_footer('shop'); ?>
-
+                    <?php // do_action('woocommerce_after_main_content'); ?>
+                    <?php // do_action('woocommerce_sidebar'); ?>
+                    <?php // get_footer('shop'); ?>
 
                 </div>
                 <?php else: ?>
