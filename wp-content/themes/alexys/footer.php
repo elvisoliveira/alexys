@@ -36,7 +36,7 @@
             <dd>
                 <ul>
                     <?php foreach (get_terms(array('taxonomy' => 'product_cat')) as $terms): ?>
-                    <li><a href="#"><?php print $terms->name; ?></a></li>
+                    <li><a href="/shop/category/<?php print $terms->slug; ?>"><?php print $terms->name; ?></a></li>
                     <?php endforeach; ?>
                 </ul>
             </dd>
