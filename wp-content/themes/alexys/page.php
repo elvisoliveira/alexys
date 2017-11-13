@@ -44,6 +44,8 @@
                         <?php get_template_part('woo-list'); ?>
                     <?php elseif(in_array('tax-product_cat', get_body_class())): ?>
                         <?php get_template_part('woo-list'); ?>
+                    <?php elseif(in_array('search-results', get_body_class())): ?>
+                        <?php get_template_part('woo-search'); ?>
                     <?php else: ?>
                         <?php get_template_part('woo-page'); ?>
                     <?php endif; ?>
