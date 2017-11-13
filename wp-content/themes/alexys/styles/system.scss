@@ -124,28 +124,38 @@ div.content {
         font-size: 40px;
         padding: 25px 0;
         text-align: center;
+        margin-bottom: 50px;
         background-size: cover;
         background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(images/ashim-d-silva-89336.jpg);
     }
-    div.center {
+    div.internal-product {
+        margin-top: 50px;
+    }
+    div.center, ul.center {
         @extend %clear;
         @extend %center;
         p {
             font-size: 13px;
-            margin-top: 10px;
             line-height: 20px;
+            margin-bottom: 10px;
         }
         h2 {
             font-size: 16px;
-            margin-top: 10px;
+            margin-top: 15px;
+            margin-bottom: 10px;
         }
         ul {
             margin-top: 10px;
             list-style-position: inside;
             li {
                 font-size: 13px;
+                line-height: 20px;
+                margin-bottom: 5px;
             }
         }
+    }
+    ul.center {
+        margin-top: 50px;
     }
 }
 
@@ -322,5 +332,44 @@ div.footer {
                 }
             }
         }
+    }
+}
+
+li.type-product {
+    width: 30%;
+    float: left;
+    overflow: hidden;
+    list-style: none;
+    position: relative;
+    h2 {
+        @extend %clear;
+    }
+    img.wp-post-image {
+        @extend %clear;
+    }
+    span.onsale {
+        @extend %clear;
+        top: 0;
+        left: 0;
+        padding: 0;
+        border-radius: 0;
+        margin: 30px -80px;
+        transform: rotate(-45deg);
+        background-color: #b39964;
+    }
+    span.price {
+        del {
+            span {
+
+            }
+        }
+        ins {
+            span {
+
+            }
+        }
+    }
+    &:nth-child(3n-1) {
+        margin: 0 5%;
     }
 }

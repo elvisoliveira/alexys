@@ -38,25 +38,15 @@
                     <?php // get_header('shop'); ?>
                     <?php // do_action('woocommerce_before_main_content'); ?>
 
-                    <?php while (have_posts()): the_post(); ?>
-
-                        <?php if(in_array('single-product', get_body_class())): ?>
-                            <div class="center">
-                                <?php wc_get_template_part('content', 'single-product'); ?>
-                            </div>
-                        <?php elseif(in_array('post-type-archive-product', get_body_class())): ?>
-                            <div class="center">
-                                <?php wc_get_template_part('content', 'product'); ?>
-                            </div>
-                        <?php elseif(in_array('tax-product_cat', get_body_class())): ?>
-                            <div class="center">
-                                <?php wc_get_template_part('content', 'product'); ?>
-                            </div>
-                        <?php else: ?>
-                            <?php get_template_part('single-page'); ?>
-                        <?php endif; ?>
-
-                    <?php endwhile; ?>
+                    <?php if(in_array('single-product', get_body_class())): ?>
+                        <?php get_template_part('woo-product'); ?>
+                    <?php elseif(in_array('post-type-archive-product', get_body_class())): ?>
+                        <?php get_template_part('woo-list'); ?>
+                    <?php elseif(in_array('tax-product_cat', get_body_class())): ?>
+                        <?php get_template_part('woo-list'); ?>
+                    <?php else: ?>
+                        <?php get_template_part('woo-page'); ?>
+                    <?php endif; ?>
 
                     <?php // do_action('woocommerce_after_main_content'); ?>
                     <?php // do_action('woocommerce_sidebar'); ?>
