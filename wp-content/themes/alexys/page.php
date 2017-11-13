@@ -32,9 +32,8 @@
             </div>
         </div>
         <div class="content">
-            <div class="center">
+
                 <?php if (have_posts()): ?>
-                <div class="page">
 
                     <?php // get_header('shop'); ?>
                     <?php // do_action('woocommerce_before_main_content'); ?>
@@ -42,14 +41,19 @@
                     <?php while (have_posts()): the_post(); ?>
 
                         <?php if(in_array('single-product', get_body_class())): ?>
+                            <div class="center">
                                 <?php wc_get_template_part('content', 'single-product'); ?>
+                            </div>
                         <?php elseif(in_array('post-type-archive-product', get_body_class())): ?>
+                            <div class="center">
                                 <?php wc_get_template_part('content', 'product'); ?>
+                            </div>
                         <?php elseif(in_array('tax-product_cat', get_body_class())): ?>
+                            <div class="center">
                                 <?php wc_get_template_part('content', 'product'); ?>
+                            </div>
                         <?php else: ?>
-                            <div class="content-title"><?php the_title(); ?><hr /></div>
-                            <div class="content-desc"><?php the_content(); ?></div>
+                            <?php get_template_part('single-page'); ?>
                         <?php endif; ?>
 
                     <?php endwhile; ?>
@@ -58,11 +62,12 @@
                     <?php // do_action('woocommerce_sidebar'); ?>
                     <?php // get_footer('shop'); ?>
 
-                </div>
                 <?php else: ?>
-                <p>Sorry, this page does not exist.</p>
+                <div class="center">
+                    <p>Sorry, this page does not exist.</p>
+                </div>
                 <?php endif; ?>
-            </div>
+
         </div>
         <div class="footer">
             <?php get_footer(); ?>

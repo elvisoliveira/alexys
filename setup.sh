@@ -181,6 +181,10 @@ wp --allow-root jetpack module activate contact-form
 # Theme: Alexys
 wp --allow-root theme activate alexys
 
+# Download alexys base image
+curl -L -o "wp-content/themes/alexys/images/ashim-d-silva-89336.jpg" \
+           "https://unsplash.com/photos/ZmgJiztRHXE/download?force=true"
+
 # WordPress Content: Post ######################################################
 ################################################################################
 
@@ -296,6 +300,7 @@ for ((i=0;i<${#products[@]};i++)); do
                          --categories="[{\"id\":$(shuf -i 1-${#product_categories[@]} -n 1)}]" \
                          --name="${products[$i]}"                                              \
                          --user="admin"                                                        \
+                         --description="$(cat ./.docker/wordpress/post-content.txt)"           \
                          --allow-root
 done
 
