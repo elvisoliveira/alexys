@@ -4,8 +4,8 @@ Mercadorias com sinal de violação devem ser recusadas ou conferidas na presen�
 <h2>SOLICITAÇÃO DE TROCA E DEVOLUÇÃO:</h2>
 Os produtos Alexys são classificados pelo Código de Defesa do Consumidor como duráveis. Sendo assim, no caso de vícios aparentes o prazo para reclamação seria de 30 dias a partir do recebimento da mercadoria. Contudo, a Alexys estende este prazo da seguinte forma:
 <ul>
-    <li>Revendedores: 180 dias a partir do recebimento para reclamação de produtos com vícios aparentes.</li>
-    <li>Consumidores: 90 dias a partir da compra para reclamação por vícios aparentes e 90 dias para os casos de vícios ocultos (que surgem após o uso). Havendo casos de consumidores que fogem a esta regra, pedimos que a loja oriente o mesmo a entrar em contato com nosso serviço de atendimento ao consumidor, através do site www.lancaperfume.com.br ou fone 0800 891 6599.</li>
+    <li><strong>Revendedores:</strong> 180 dias a partir do recebimento para reclamação de produtos com vícios aparentes.</li>
+    <li><strong>Consumidores:</strong> 90 dias a partir da compra para reclamação por vícios aparentes e 90 dias para os casos de vícios ocultos (que surgem após o uso). Havendo casos de consumidores que fogem a esta regra, pedimos que a loja oriente o mesmo a entrar em contato com nosso serviço de atendimento ao consumidor, através do site www.lancaperfume.com.br ou fone 0800 891 6599.</li>
 </ul>
 Havendo o recebimento de algum produto com problemas, o revendedor deve contatar nossa equipe de CRM através do fone 0800 887 1551, que o instruirá sobre os procedimentos para envio do mesmo à fábrica.
 
