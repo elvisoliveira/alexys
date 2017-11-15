@@ -134,12 +134,12 @@ div.content {
     div.center, ul.center {
         @extend %clear;
         @extend %center;
-        p {
+        > p {
             font-size: 13px;
             line-height: 20px;
             margin-bottom: 10px;
         }
-        h2 {
+        > h2 {
             font-size: 16px;
             margin-top: 15px;
             margin-bottom: 10px;
@@ -341,32 +341,66 @@ li.type-product {
     overflow: hidden;
     list-style: none;
     position: relative;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed black;
+    > a {
+        @extend %clear;
+        text-decoration: none;
+    }
+    > a.button {
+        top: 10px;
+        right: 10px;
+        width: auto;
+        padding: 10px;
+        font-size: 12px;
+        min-height: auto;
+        border-radius: 0;
+        line-height: 12px;
+        position: absolute;
+    }
     h2 {
         @extend %clear;
+        color: #b39964;
+        font-size: 12px;
+        font-weight: bold;
+        margin: 10px 0 5px 0;
+        font-family: $font-plain;
+        text-transform: uppercase;
     }
     img.wp-post-image {
         @extend %clear;
     }
     span.onsale {
-        @extend %clear;
-        top: 0;
-        left: 0;
-        padding: 0;
+        top: 10px;
+        left: 10px;
+        padding: 10px;
+        font-size: 12px;
+        min-height: auto;
         border-radius: 0;
-        margin: 30px -80px;
-        transform: rotate(-45deg);
+        line-height: 12px;
         background-color: #b39964;
     }
     span.price {
+        @extend %clear;
+        border: 0;
+        color: #000;
+        text-decoration: none;
         del {
+            @extend %clear;
+            color: #777777;
+            font-size: 11px;
+            margin-bottom: 5px;
             span {
-
+                text-decoration: none;
             }
         }
         ins {
-            span {
-
-            }
+            @extend %clear;
+            color: #515151;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
         }
     }
     &:nth-child(3n-1) {
