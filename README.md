@@ -1,2 +1,2 @@
 # Alexys
-WordPress + WooCommerce.
+WordPress + WooCommerce + Docker.
