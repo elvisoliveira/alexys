@@ -6,6 +6,8 @@ WORKDIR /var/www/alexys
 
 # Enviroment Dependencies:
 # Composer requires zip and git. (https://getcomposer.org/doc/00-intro.md#system-requirements)
+RUN apt-get update && \
+    apt-get install gnupg wget curl -y
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
     apt-get update && \
     apt-get install git unzip build-essential nodejs mysql-client libpng-dev libjpeg-dev ruby ruby-dev -y && \
